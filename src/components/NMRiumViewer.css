@@ -1,0 +1,208 @@
+.nmrium-section {
+  width: min(100% - 2rem, 88rem);
+  margin: 0 auto 5rem;
+  border-top: 1px solid var(--ink);
+}
+
+.nmrium-heading {
+  display: flex;
+  padding-block: 1.25rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nmrium-heading p,
+.nmrium-heading > span,
+.nmrium-toolbar,
+.nmrium-preview-copy button,
+.nmrium-status,
+.nmrium-download {
+  font-family: 'DM Mono', ui-monospace, monospace;
+}
+
+.nmrium-heading p {
+  margin-bottom: 0.5rem;
+  color: var(--green);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.nmrium-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.nmrium-heading > span {
+  max-width: 22rem;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.nmrium-preview {
+  display: grid;
+  min-height: 30rem;
+  grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.5fr);
+  border: 1px solid var(--ink);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.nmrium-preview-trace {
+  position: relative;
+  min-height: 24rem;
+  margin: 2rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.nmrium-preview-trace i {
+  position: absolute;
+  bottom: 0;
+  left: var(--position);
+  width: 2px;
+  height: var(--height);
+  background: var(--signal);
+}
+
+.nmrium-preview-copy {
+  display: flex;
+  padding: 2rem;
+  border-left: 1px solid var(--ink);
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.nmrium-preview-copy p {
+  line-height: 1.5;
+}
+
+.nmrium-preview-copy button,
+.nmrium-status button,
+.nmrium-toolbar button {
+  min-height: 2.75rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.nmrium-preview-copy button:disabled {
+  background: transparent;
+  color: #716e67;
+  cursor: not-allowed;
+}
+
+.nmrium-status {
+  display: flex;
+  min-height: 20rem;
+  padding: 2rem;
+  border: 1px solid var(--ink);
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+}
+
+.nmrium-error {
+  flex-direction: column;
+}
+
+.nmrium-loader {
+  width: 1.25rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--rule);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: nmrium-spin 0.9s linear infinite;
+}
+
+.nmrium-frame {
+  position: relative;
+  z-index: 1;
+  height: min(75vh, 52rem);
+  min-height: 34rem;
+  border: 1px solid var(--ink);
+  background: white;
+}
+
+.nmrium-frame.is-full-screen {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  border: 0;
+}
+
+.nmrium-toolbar {
+  display: flex;
+  height: 3rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.nmrium-toolbar button {
+  min-height: 2rem;
+  padding: 0.3rem 0.6rem;
+}
+
+.nmrium-canvas {
+  width: 100%;
+  height: calc(100% - 3rem);
+  color: #202020;
+}
+
+.nmrium-download {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  text-underline-offset: 0.3rem;
+  text-transform: uppercase;
+}
+
+@keyframes nmrium-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (max-width: 760px) {
+  .nmrium-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nmrium-heading > span {
+    text-align: left;
+  }
+
+  .nmrium-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .nmrium-preview-copy {
+    border-top: 1px solid var(--ink);
+    border-left: 0;
+  }
+
+  .nmrium-frame {
+    height: 38rem;
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nmrium-loader {
+    animation: none;
+  }
+}

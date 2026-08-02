@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import { entryPath } from '../../lib/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const examples = await getCollection('entries', ({ data }) => data.section === 'example' && !data.draft);
+---
+
+<BaseLayout title="Examples | That Natural Product Chemist" description="Structure-forward demonstrations of analytical techniques and natural product chemistry reasoning.">
+  <section class="listing-shell examples-index">
+    <header class="listing-header">
+      <p class="eyebrow">Examples / Structure in view</p>
+      <h1>See the structure.<br />Study how we know.</h1>
+      <p>Examples keep a selected compound visible from the beginning and show what each technique contributes, why it was chosen, and how the evidence supports the interpretation.</p>
+    </header>
+    {examples.length > 0 ? (
+      <div class="article-list">
+        {examples.map((entry, index) => (
+          <article><span>{String(index + 1).padStart(2, '0')}</span><div><p>worked example</p><h2><a href={entryPath(entry)}>{entry.data.title}</a></h2><p>{entry.data.summary}</p></div></article>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-section"><span>Examples 000</span><h2>The framework is ready; the first selected compound is not yet published.</h2><p>Unlike an Exercise, an Example will show the structure beside every analytical step. No placeholder compound is presented as finished content.</p></div>
+    )}
+  </section>
+</BaseLayout>

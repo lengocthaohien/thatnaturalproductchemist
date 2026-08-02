@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import { entryLabel, entryPath } from '../../lib/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const opinions = (await getCollection(
+  'entries',
+  ({ data }) => data.section === 'opinion' && !data.draft,
+)).sort(
+  (left, right) => right.data.publishedAt.valueOf() - left.data.publishedAt.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Opinions | That Natural Product Chemist"
+  description="Reasoned viewpoints and practical assessments of tools used in natural product chemistry."
+>
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">Opinions / Positions in context</p>
+      <h1>Tools tested.<br />Positions made explicit.</h1>
+      <p>Opinions examine tools, practices, and professional questions in natural product chemistry. They separate evidence from preference and give readers enough context to assess the author's position.</p>
+    </header>
+
+    <div class="article-list">
+      {opinions.map((opinion, index) => (
+        <article>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <p>{entryLabel(opinion)}</p>
+            <h2><a href={entryPath(opinion)}>{opinion.data.title}</a></h2>
+            <p>{opinion.data.summary}</p>
+          </div>
+          <time datetime={opinion.data.publishedAt.toISOString()}>
+            {opinion.data.publishedAt.getFullYear()}
+          </time>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

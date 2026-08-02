@@ -1,0 +1,236 @@
+---
+const repositoryIssueUrl = 'https://github.com/lengocthaohien/thatnaturalproductchemist/issues/new';
+---
+
+<button class="example-submission-trigger" type="button" data-open-example-submission>
+  Start an Example submission
+</button>
+
+<noscript>
+  <p class="example-submission-noscript">
+    JavaScript is required for the guided window. You can still
+    <a href={repositoryIssueUrl}>open a GitHub issue</a>.
+  </p>
+</noscript>
+
+<dialog
+  class="example-submission-dialog"
+  data-example-submission
+  data-issue-url={repositoryIssueUrl}
+  aria-labelledby="example-submission-title"
+>
+  <div class="example-submission-shell">
+    <header class="example-submission-header">
+      <div>
+        <p>Examples only / Public submission</p>
+        <h2 id="example-submission-title">Propose a structure-forward Example</h2>
+      </div>
+      <button type="button" class="dialog-close" data-close-example-submission aria-label="Close submission window">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </header>
+
+    <p class="example-submission-intro">
+      An Example keeps the chemical structure visible throughout and explains how the evidence supports its elucidation. This form prepares a public GitHub issue; do not enter confidential or identifying instrument metadata.
+    </p>
+
+    <form class="example-submission-form" data-example-submission-form>
+      <fieldset>
+        <legend><span>01</span> NMR data</legend>
+        <label>
+          Stable link to sanitized NMR data
+          <input
+            type="url"
+            name="nmrUrl"
+            placeholder="https://zenodo.org/records/..."
+            maxlength="1000"
+            required
+          />
+        </label>
+        <p class="field-guidance">Use a public Zenodo, OSF, institutional repository, or GitHub Release URL containing the data needed to inspect the evidence.</p>
+        <label>
+          Dataset and acquisition summary
+          <textarea
+            name="nmrSummary"
+            rows="4"
+            maxlength="1200"
+            placeholder="Experiments, field strength, solvent, temperature, processing state, and sample context"
+            required
+          ></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>02</span> Chemical structure</legend>
+        <label>
+          Compound name or working identifier
+          <input type="text" name="compoundName" maxlength="160" required />
+        </label>
+        <label>
+          Structure as SMILES
+          <textarea
+            name="smiles"
+            rows="3"
+            maxlength="1200"
+            spellcheck="false"
+            placeholder="Enter an isomeric SMILES when stereochemistry is known"
+            required
+          ></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>03</span> Elucidation workflow</legend>
+        <label>
+          Evidence and reasoning
+          <textarea
+            name="workflow"
+            rows="8"
+            maxlength="3000"
+            placeholder="Describe the sequence from observations to assignments, including uncertainty, competing interpretations, and the role of each experiment."
+            required
+          ></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>04</span> Submitter information</legend>
+        <label>
+          Submitter name
+          <input type="text" name="submitterName" autocomplete="name" maxlength="160" required />
+        </label>
+        <label>
+          Affiliation or independent researcher status
+          <input type="text" name="affiliation" maxlength="240" required />
+        </label>
+        <label class="check-field">
+          <input type="checkbox" name="publicationCredit" data-publication-credit />
+          <span>I want to be considered for named inclusion in a resulting That Natural Product Chemist publication.</span>
+        </label>
+        <label data-orcid-field>
+          ORCID iD <span class="conditional-label">Required for named publication credit</span>
+          <input
+            type="text"
+            name="orcid"
+            inputmode="numeric"
+            autocomplete="url"
+            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]"
+            placeholder="0000-0000-0000-0000"
+            maxlength="19"
+            aria-describedby="orcid-guidance"
+          />
+        </label>
+        <p id="orcid-guidance" class="field-guidance">ORCID is optional for correspondence-only submissions and required when publication credit is requested.</p>
+        <label class="check-field">
+          <input type="checkbox" name="rightsConfirmed" required />
+          <span>I created the submission or have permission to share its text, structure, figures, and linked data for review and potential CC BY-NC 4.0 publication.</span>
+        </label>
+        <label class="check-field">
+          <input type="checkbox" name="sanitizationConfirmed" required />
+          <span>I checked the linked data for private paths, usernames, personal information, credentials, and unrelated sample metadata.</span>
+        </label>
+      </fieldset>
+
+      <div class="example-submission-actions">
+        <button type="button" class="secondary-button" data-close-example-submission>Cancel</button>
+        <button type="submit">Prepare GitHub submission</button>
+      </div>
+      <p class="submission-status" data-submission-status aria-live="polite"></p>
+      <a class="prepared-issue-link" data-prepared-issue-link target="_blank" rel="noreferrer" hidden>Open the prepared GitHub issue</a>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  const dialogs = document.querySelectorAll<HTMLDialogElement>('[data-example-submission]');
+
+  for (const dialog of dialogs) {
+    const opener = document.querySelector<HTMLButtonElement>('[data-open-example-submission]');
+    const form = dialog.querySelector<HTMLFormElement>('[data-example-submission-form]');
+    const credit = dialog.querySelector<HTMLInputElement>('[data-publication-credit]');
+    const orcid = dialog.querySelector<HTMLInputElement>('input[name="orcid"]');
+    const status = dialog.querySelector<HTMLElement>('[data-submission-status]');
+    const preparedLink = dialog.querySelector<HTMLAnchorElement>('[data-prepared-issue-link]');
+    const issueUrl = dialog.dataset.issueUrl;
+
+    if (!opener || !form || !credit || !orcid || !status || !preparedLink || !issueUrl) continue;
+    const creditInput = credit;
+    const orcidInput = orcid;
+
+    function updateOrcidRequirement() {
+      orcidInput.required = creditInput.checked;
+    }
+
+    opener.addEventListener('click', () => {
+      updateOrcidRequirement();
+      dialog.showModal();
+    });
+
+    for (const closer of dialog.querySelectorAll<HTMLButtonElement>('[data-close-example-submission]')) {
+      closer.addEventListener('click', () => dialog.close());
+    }
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    creditInput.addEventListener('change', updateOrcidRequirement);
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      updateOrcidRequirement();
+      if (!form.reportValidity()) return;
+
+      const values = new FormData(form);
+      const compoundName = String(values.get('compoundName') || '').trim();
+      const publicationCredit = values.has('publicationCredit');
+      const orcidValue = String(values.get('orcid') || '').trim();
+      const body = [
+        '## Publication form',
+        '',
+        '- Example (the structure remains visible throughout)',
+        '',
+        '## NMR data',
+        '',
+        `- Stable data URL: ${String(values.get('nmrUrl') || '').trim()}`,
+        '',
+        String(values.get('nmrSummary') || '').trim(),
+        '',
+        '## Chemical structure',
+        '',
+        `- Compound or identifier: ${compoundName}`,
+        '- SMILES:',
+        '',
+        '```text',
+        String(values.get('smiles') || '').trim(),
+        '```',
+        '',
+        '## Elucidation workflow',
+        '',
+        String(values.get('workflow') || '').trim(),
+        '',
+        '## Submitter',
+        '',
+        `- Name: ${String(values.get('submitterName') || '').trim()}`,
+        `- Affiliation or status: ${String(values.get('affiliation') || '').trim()}`,
+        `- Requests named publication credit: ${publicationCredit ? 'Yes' : 'No'}`,
+        `- ORCID: ${publicationCredit ? orcidValue : orcidValue || 'Not supplied'}`,
+        '',
+        '## Declarations',
+        '',
+        '- [x] Rights to share the submitted material are confirmed.',
+        '- [x] Linked data were checked for private and unrelated metadata.',
+        '',
+        '> This proposal is subject to scientific, rights, and editorial review. Submission does not guarantee publication.',
+      ].join('\n');
+      const target = new URL(issueUrl);
+      target.searchParams.set('title', `[Example submission] ${compoundName}`);
+      target.searchParams.set('body', body);
+
+      preparedLink.href = target.href;
+      preparedLink.hidden = false;
+      status.textContent = 'The submission is prepared. GitHub will open in a new tab for final review and posting.';
+      globalThis.open(target.href, '_blank', 'noopener,noreferrer');
+    });
+  }
+</script>

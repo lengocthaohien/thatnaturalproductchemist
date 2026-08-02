@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import { entryLabel, entryPath } from '../../lib/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = (await getCollection(
+  'entries',
+  ({ data }) => data.section === 'article' && !data.draft,
+)).sort(
+  (left, right) => right.data.publishedAt.valueOf() - left.data.publishedAt.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Articles | That Natural Product Chemist"
+  description="Close readings and perspectives on noteworthy research papers in natural product chemistry."
+>
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">Articles / Literature in focus</p>
+      <h1>Interesting papers,<br />read with a chemist's eye.</h1>
+      <p>Articles examine noteworthy research papers: what they report, why the work matters, how the evidence supports the claims, and which questions remain open.</p>
+    </header>
+
+    {articles.length > 0 ? (
+      <div class="article-list">
+        {articles.map((article, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <p>{entryLabel(article)}</p>
+              <h2><a href={entryPath(article)}>{article.data.title}</a></h2>
+              <p>{article.data.summary}</p>
+            </div>
+            <time datetime={article.data.publishedAt.toISOString()}>
+              {article.data.publishedAt.getFullYear()}
+            </time>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-section">
+        <span>Articles 000</span>
+        <h2>The reading list is open; the first paper perspective is not yet published.</h2>
+        <p>Articles will begin with a clearly cited paper and distinguish its reported evidence from the author's interpretation.</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+{
+  "name": "thatnaturalproductchemist",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro check && astro build",
+    "prepare:data": "node scripts/prepare-cyclo-pro-leu-data.mjs",
+    "prepare:figures": "node scripts/generate-exercise-001-figures.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/react": "^6.0.2",
+    "@zakodium/nmrium-core": "^0.7.52",
+    "@zakodium/nmrium-core-plugins": "^0.7.70",
+    "astro": "^7.1.6",
+    "d3-contour": "^4.0.2",
+    "file-collection": "^6.6.1",
+    "nmrium": "^2.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "typescript": "^5.7.0"
+  }
+}

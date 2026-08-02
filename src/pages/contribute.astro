@@ -1,0 +1,47 @@
+---
+import ExampleSubmissionDialog from '../components/ExampleSubmissionDialog.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const repositoryUrl = 'https://github.com/lengocthaohien/thatnaturalproductchemist';
+---
+
+<BaseLayout
+  title="Contribute | That Natural Product Chemist"
+  description="Propose topics, report scientific corrections, or contribute a publication through GitHub."
+>
+  <section class="text-page contribute-page">
+    <header>
+      <p class="eyebrow">Contribute / Public review</p>
+      <h1>Question a claim.<br />Add better evidence.</h1>
+    </header>
+    <div class="text-page-body">
+      <p class="lead">Participation is intentionally simple for the first release: discussions happen in GitHub Issues, and complete revisions arrive as pull requests.</p>
+      <div class="contribution-options">
+        <section>
+          <span>01</span>
+          <h2>Propose a topic</h2>
+          <p>Open an issue describing the natural product, technique, or practical problem you would like to see addressed.</p>
+          <a href={`${repositoryUrl}/issues/new`}>Open a GitHub issue</a>
+        </section>
+        <section>
+          <span>02</span>
+          <h2>Report a correction</h2>
+          <p>Point to the exact statement, figure, signal, correlation, method, or interpretation; include supporting evidence and a citable source where possible.</p>
+          <a href={`${repositoryUrl}/issues/new`}>Report a correction</a>
+        </section>
+        <section>
+          <span>03</span>
+          <h2>Submit an Example</h2>
+          <p>Propose a structure-forward teaching Example with sanitized NMR data, a SMILES structure, your elucidation workflow, and submitter information.</p>
+          <ExampleSubmissionDialog />
+        </section>
+        <section>
+          <span>04</span>
+          <h2>Contribute another piece</h2>
+          <p>Fork the repository, follow the content template and rights declaration, then submit the work for scientific review.</p>
+          <a href={`${repositoryUrl}/blob/main/CONTRIBUTING.md`}>Read the contribution guide</a>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

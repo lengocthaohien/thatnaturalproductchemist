@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import { entryPath } from '../../lib/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const exercises = (await getCollection(
+  'entries',
+  ({ data }) => data.section === 'exercise' && data.format === 'guided-exercise' && !data.draft,
+)).sort((left, right) => (left.data.exercise?.number ?? 0) - (right.data.exercise?.number ?? 0));
+---
+
+<BaseLayout title="Exercises | That Natural Product Chemist" description="Progressive natural product chemistry problems that reveal the structure only after the evidence has been examined.">
+  <section class="listing-shell spectra-index">
+    <header class="listing-header">
+      <p class="eyebrow">Exercises / Work from evidence</p>
+      <h1>Commit to the evidence<br />before seeing the structure.</h1>
+      <p>Each exercise presents analytical observations in stages. The reviewed structure and assignment appear only at the end, after you have made your own proposal.</p>
+    </header>
+    <div class="article-list">
+      {exercises.map((exercise) => (
+        <article>
+          <span>{String(exercise.data.exercise?.number ?? 0).padStart(2, '0')}</span>
+          <div>
+            <p>{exercise.data.format.replaceAll('-', ' ')}</p>
+            <h2><a href={entryPath(exercise)}>{exercise.data.title}</a></h2>
+            <p>{exercise.data.summary}</p>
+          </div>
+          <time>{exercise.data.exercise?.solutionStatus.replace('-', ' ')}</time>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="That Natural Product Chemist"
+  description="Practical natural product chemistry through paper perspectives, opinions, analytical exercises, and worked examples."
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Articles · Opinions · Exercises · Examples</p>
+      <h1>That Natural<br />Product Chemist</h1>
+      <p class="hero-intro">
+        Practical natural product chemistry, from isolation and analytical evidence to structures, tools, papers, and the decisions behind them.
+      </p>
+      <a class="text-link" href="/exercises/">Attempt Exercise 001 <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="spectrum-panel" aria-label="Stylized NMR spectrum">
+      <div class="spectrum-label">
+        <span>01</span>
+        <span>¹H NMR</span>
+      </div>
+      <div class="spectrum-trace" aria-hidden="true">
+        <span style="--x: 8%; --h: 22%"></span>
+        <span style="--x: 18%; --h: 64%"></span>
+        <span style="--x: 31%; --h: 36%"></span>
+        <span style="--x: 48%; --h: 84%"></span>
+        <span style="--x: 62%; --h: 48%"></span>
+        <span style="--x: 77%; --h: 72%"></span>
+        <span style="--x: 89%; --h: 30%"></span>
+      </div>
+      <div class="spectrum-axis" aria-hidden="true">
+        <span>10</span><span>8</span><span>6</span><span>4</span><span>2</span><span>0 ppm</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles" aria-labelledby="principles-title">
+    <p class="section-number">001 / Working principles</p>
+    <h2 id="principles-title">From source to structure,<br />with the reasoning left in.</h2>
+    <div class="principle-grid">
+      <article>
+        <span>01</span>
+        <h3>Real evidence</h3>
+        <p>Chromatograms, spectra, calculations, and source records accompany interpretation whenever publication rights allow.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Auditable reasoning</h3>
+        <p>Observations, inference, uncertainty, and corrections remain visible instead of disappearing behind a final claim.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Open participation</h3>
+        <p>Researchers can propose topics, report corrections, and contribute articles through GitHub.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
