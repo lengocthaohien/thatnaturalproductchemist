@@ -60,7 +60,7 @@ Generate the static no-JavaScript figures after preparing the browser package:
 npm run prepare:figures
 ```
 
-See [docs/media-authoring.md](docs/media-authoring.md) for the stepwise figure and PDF workflow.
+See [docs/media-authoring.md](docs/media-authoring.md) for the stepwise figure and PDF workflow, and [docs/adding-content.md](docs/adding-content.md) for how to add a new entry.
 
 ## Scientific release gate
 
@@ -70,7 +70,20 @@ The public Exercise 001 prompt contains no structural reveal. The Cyclo(L-Pro-L-
 
 Pushes to `main` are checked and deployed to GitHub Pages by `.github/workflows/deploy.yml`. Pull requests run the build without deploying. The canonical host and `CNAME` are `thatnaturalproductchemist.net`.
 
-Test deployment: [http://127.0.0.1:4321/](http://127.0.0.1:4321/)
+### Deployment test
+
+A deployment test serves the production build (`dist/`) locally, exactly as GitHub Pages will serve it:
+
+```sh
+npm run build      # astro check + build into dist/
+npm run preview    # serve dist/ locally
+```
+
+Then open [http://localhost:4321/](http://localhost:4321/). The preview server binds to `localhost` (which may resolve to the IPv6 loopback `::1`), so use the `localhost` URL — `http://127.0.0.1:4321/` (IPv4) may not connect. Stop the server with `Ctrl+C`.
+
+To check the build without starting a server, run only `npm run build` and confirm it reports `0 errors`.
+
+The live site deploys automatically on every push to `main`; a merged pull request is itself the pre-deployment check, since the workflow builds every PR without publishing it.
 
 ## Licensing
 

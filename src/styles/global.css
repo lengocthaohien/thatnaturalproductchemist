@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap');
 
 :root {
-  --ink: #17211d;
-  --paper: #f3f0e8;
-  --paper-deep: #e7e1d4;
-  --green: #0b6548;
-  --signal: #e9542d;
-  --rule: #b9b4a9;
+  --ink: #3D2036;
+  --paper: #FDFCF9;
+  --paper-deep: #F4F1EA;
+  --green: #5E3A52;
+  --signal: #C9A227;
+  --rule: #DDD6CB;
   font-family: 'Newsreader', Georgia, serif;
   color: var(--ink);
   background: var(--paper);
@@ -25,10 +25,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background:
-    linear-gradient(rgba(23, 33, 29, 0.035) 1px, transparent 1px),
-    var(--paper);
-  background-size: 100% 32px;
+  background: var(--paper);
 }
 
 a {
@@ -115,8 +112,9 @@ nav a,
   margin-inline: auto;
   grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.85fr);
   align-items: center;
-  gap: clamp(3rem, 7vw, 8rem);
-  padding-block: 4rem 6rem;
+  /* Smaller centre gap pulls the spectrum canvas toward the middle/left. */
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: 3rem 5rem;
 }
 
 .eyebrow,
@@ -137,10 +135,17 @@ p {
 h1 {
   max-width: 12ch;
   margin-bottom: 2rem;
-  font-size: clamp(4.5rem, 8vw, 9rem);
+  font-size: clamp(3rem, 5.5vw, 6rem);
   font-weight: 400;
-  line-height: 0.82;
+  line-height: 0.9;
   letter-spacing: 0;
+}
+
+/* The hero title carries an explicit line break; let each half stay on one line. */
+.hero h1 {
+  max-width: none;
+  font-size: clamp(2.75rem, 5vw, 5.25rem);
+  line-height: 1;
 }
 
 .hero-intro {
@@ -158,10 +163,10 @@ h1 {
 
 .spectrum-panel {
   position: relative;
-  min-height: 31rem;
+  height: 28rem;
   border-left: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .spectrum-label,
@@ -182,29 +187,18 @@ h1 {
 .spectrum-trace {
   position: absolute;
   inset: 4rem 1rem 2.5rem;
+  /* Replaced element: explicit dimensions are required, otherwise the inset
+     bottom is ignored and the SVG overflows the panel at intrinsic height. */
+  width: calc(100% - 2rem);
+  height: calc(100% - 6.5rem);
+  display: block;
   border-bottom: 1px solid var(--ink);
 }
 
-.spectrum-trace span {
-  position: absolute;
-  bottom: 0;
-  left: var(--x);
-  width: 2px;
-  height: var(--h);
-  background: var(--signal);
-  transform: skewX(-8deg);
-  transform-origin: bottom;
-}
-
-.spectrum-trace span::after {
-  position: absolute;
-  bottom: 0;
-  left: -5px;
-  width: 10px;
-  height: 25%;
-  border: 1px solid var(--signal);
-  border-bottom: 0;
-  content: '';
+.spectrum-trace path {
+  stroke: var(--green); /* aubergine trace */
+  stroke-width: 1.5;
+  fill: none;
 }
 
 .spectrum-axis {
@@ -222,7 +216,7 @@ h1 {
 }
 
 .principles .section-number {
-  color: #b8d4c7;
+  color: #D8C6DD;
 }
 
 .principles h2 {
@@ -237,13 +231,13 @@ h1 {
 .principle-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid #8eb5a3;
+  border-top: 1px solid #8A6A7E;
 }
 
 .principle-grid article {
   min-height: 15rem;
   padding: 1.5rem 2rem 1rem 0;
-  border-right: 1px solid #8eb5a3;
+  border-right: 1px solid #8A6A7E;
 }
 
 .principle-grid article + article {
@@ -255,7 +249,7 @@ h1 {
 }
 
 .principle-grid article > span {
-  color: #b8d4c7;
+  color: #D8C6DD;
   font-size: 0.72rem;
 }
 
@@ -267,7 +261,7 @@ h1 {
 
 .principle-grid p {
   max-width: 24rem;
-  color: #d5e3dc;
+  color: #EDE2CE;
   line-height: 1.55;
 }
 
@@ -292,11 +286,13 @@ h1 {
   padding-block: clamp(5rem, 10vw, 9rem);
 }
 
+/* Unified with the hero so headings look consistent across every tab, and a
+   wider measure keeps long titles to two lines instead of three. */
 .listing-header h1,
 .article-header h1 {
-  max-width: 15ch;
-  font-size: clamp(3.5rem, 7vw, 7.5rem);
-  line-height: 0.92;
+  max-width: 26ch;
+  font-size: clamp(2.75rem, 5vw, 5.25rem);
+  line-height: 1;
 }
 
 .listing-header > p:last-child,
@@ -433,7 +429,7 @@ h1 {
 
 .article-body p:has(> img) + p > em:only-child {
   display: block;
-  color: #52605a;
+  color: #7A6A5F;
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 0.68rem;
   font-style: normal;
@@ -503,7 +499,7 @@ h1 {
 }
 
 .dataset-status strong {
-  color: var(--signal);
+  color: var(--ink);
   font-size: 0.7rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -593,9 +589,9 @@ h1 {
 }
 
 .text-page header h1 {
-  max-width: 12ch;
-  font-size: clamp(3.5rem, 6vw, 7rem);
-  line-height: 0.9;
+  max-width: 26ch;
+  font-size: clamp(2.75rem, 5vw, 5.25rem);
+  line-height: 1;
 }
 
 .text-page-body {
@@ -678,7 +674,7 @@ h1 {
 }
 
 .example-submission-dialog::backdrop {
-  background: rgba(23, 33, 29, 0.72);
+  background: rgba(61, 32, 54, 0.72);
 }
 
 .example-submission-shell {
@@ -753,7 +749,7 @@ h1 {
 
 .example-submission-form legend span {
   margin-right: 0.75rem;
-  color: var(--signal);
+  color: var(--ink);
 }
 
 .example-submission-form label:not(.check-field) {
@@ -769,7 +765,7 @@ h1 {
   padding: 0.75rem;
   border: 1px solid var(--rule);
   border-radius: 0;
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.7);
   color: var(--ink);
   font-size: 0.78rem;
   line-height: 1.5;
@@ -788,7 +784,7 @@ h1 {
 
 .field-guidance {
   margin: -0.75rem 0 0;
-  color: #52605a;
+  color: #7A6A5F;
   font-size: 0.68rem;
   line-height: 1.5;
 }
@@ -894,12 +890,18 @@ h1 {
     padding-block: 4rem;
   }
 
+  /* Keep titles on a sane scale on small screens (was 4.5rem, which wrapped
+     everything to many lines). */
   h1 {
-    font-size: 4.5rem;
+    font-size: clamp(2.25rem, 9vw, 3.25rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 9vw, 3rem);
   }
 
   .spectrum-panel {
-    min-height: 22rem;
+    height: 20rem;
   }
 
   .principle-grid {
@@ -911,7 +913,7 @@ h1 {
     min-height: auto;
     padding: 1.5rem 0 2rem;
     border-right: 0;
-    border-bottom: 1px solid #8eb5a3;
+    border-bottom: 1px solid #8A6A7E;
   }
 
   .principle-grid h3 {

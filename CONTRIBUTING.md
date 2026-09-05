@@ -27,7 +27,7 @@ Submitters who request named inclusion in a resulting publication must provide a
 The guided window prepares a public GitHub issue. It does not upload or retain files in the website. Deposit NMR data in Zenodo, OSF, an institutional repository, or a GitHub Release and provide the stable URL. Remove private paths, usernames, personal information, credentials, and unrelated sample metadata before sharing it.
 
 1. Fork the repository and create a branch.
-2. Add a Markdown file under `src/content/articles/` using the existing frontmatter schema.
+2. Add a Markdown file under `src/content/articles/` using the frontmatter schema documented in [docs/adding-content.md](docs/adding-content.md).
 3. Set `draft: true` until scientific review is complete.
 4. Run `npm run build` locally.
 5. Open a pull request describing the scope, evidence, and any unresolved interpretation.

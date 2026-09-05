@@ -180,9 +180,9 @@ function geometryPath(multiPolygon, plot, gridWidth, gridHeight) {
 function svgDocument(width, height, contents) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img">
   <style>
-    .label,.ticks,.legend,.note{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.label{font-size:17px;fill:#0b6548}.title{font-family:Georgia,serif;font-size:27px;fill:#17211d}.axis,.ticks line,.plot{stroke:#17211d;stroke-width:1;fill:none}.ticks,.legend{font-size:15px;fill:#17211d}.trace{stroke:#e9542d;stroke-width:1.5;fill:none}.contours path{fill:none;stroke-width:1}.positive path,.positive-key{stroke:#0b6548}.negative path,.negative-key{stroke:#e9542d}.note{font-size:13px;fill:#52605a}
+    .label,.ticks,.legend,.note{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.label{font-size:17px;fill:#5E3A52}.title{font-family:Georgia,serif;font-size:27px;fill:#3D2036}.axis,.ticks line,.plot{stroke:#3D2036;stroke-width:1;fill:none}.ticks,.legend{font-size:15px;fill:#3D2036}.trace{stroke:#C9A227;stroke-width:1.5;fill:none}.contours path{fill:none;stroke-width:1}.positive path,.positive-key{stroke:#5E3A52}.negative path,.negative-key{stroke:#C9A227}.note{font-size:13px;fill:#7A6A5F}
   </style>
-  <rect width="100%" height="100%" fill="#f3f0e8"/>
+  <rect width="100%" height="100%" fill="#E7DCC0"/>
   ${contents}
 </svg>\n`;
 }
