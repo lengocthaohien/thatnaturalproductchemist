@@ -142,6 +142,8 @@ The reviewed version must record chemical shift, multiplicity, integral, couplin
 
 The saved carbon peak list contains only 170.733, 45.096, 28.317, and 22.545 ppm and is visibly incomplete for an 11-carbon compound. The final carbon list must therefore come from visual inspection of the processed spectrum, including phase classification, rather than automatic reuse of the peak-picking file.
 
+**Referencing review note.** The ¹H spectra are correctly referenced (residual DMSO-d₆ reads 2.500 ppm in experiments 30 and 31), but the processed ¹³C axis of experiment 32 places the residual DMSO-d₆ septet centre at 39.99 ppm instead of the Cambridge Isotope Laboratories NMR Solvent Data Chart value of 39.51 ppm. Before final ¹³C assignments are published, re-reference the ¹³C data (≈ −0.49 ppm) and adjust all candidate ¹³C values accordingly; the ¹³C dimensions of the 2D experiments (33–35) must be checked against the same reference.
+
 ## COSY spin systems
 
 Candidate cross-peaks will be used to trace the proline and leucine proton networks. Every claimed link must be entered in the correlation table only after inspection at an appropriate contour level.

@@ -12,5 +12,9 @@ export function entryPath(entry: CollectionEntry<'entries'>) {
 }
 
 export function entryLabel(entry: CollectionEntry<'entries'>) {
-  return entry.data.format.replaceAll('-', ' ');
+  const label =
+    entry.data.section === 'article' && entry.data.paperType
+      ? entry.data.paperType
+      : entry.data.format;
+  return label.replaceAll('-', ' ');
 }

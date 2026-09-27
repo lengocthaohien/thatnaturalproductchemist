@@ -19,6 +19,9 @@ const entries = defineCollection({
         'worked-example',
         'reviewed-solution',
       ]),
+    paperType: z
+      .enum(['chemical-diversity', 'biosynthesis', 'research-methodology', 'review'])
+      .optional(),
     title: z.string(),
     summary: z.string(),
     category: z.enum(['field-note', 'structure-elucidation', 'reference']).optional(),
@@ -86,6 +89,23 @@ const entries = defineCollection({
         code: 'custom',
         path: ['format'],
         message: 'Articles must use the paper-perspective format.',
+      });
+    }
+
+    if (entry.section === 'article' && !entry.paperType) {
+      context.addIssue({
+        code: 'custom',
+        path: ['paperType'],
+        message:
+          'Articles must declare a paperType: chemical-diversity, biosynthesis, research-methodology, or review.',
+      });
+    }
+
+    if (entry.section !== 'article' && entry.paperType) {
+      context.addIssue({
+        code: 'custom',
+        path: ['paperType'],
+        message: 'Only articles declare a paperType.',
       });
     }
 

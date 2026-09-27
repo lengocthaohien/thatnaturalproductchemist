@@ -13,13 +13,13 @@ const articles = (await getCollection(
 
 <BaseLayout
   title="Articles | That Natural Product Chemist"
-  description="Close readings and perspectives on noteworthy research papers in natural product chemistry."
+  description="Close readings of noteworthy research papers in natural product chemistry, labeled by the contribution the paper makes: chemical diversity, biosynthesis, research methodology, or review."
 >
   <section class="listing-shell">
     <header class="listing-header">
       <p class="eyebrow">Articles / Literature in focus</p>
       <h1>Interesting papers,<br />read with a chemist's eye.</h1>
-      <p>Articles examine noteworthy research papers: what they report, why the work matters, how the evidence supports the claims, and which questions remain open.</p>
+      <p>Articles examine noteworthy research papers: what they report, why the work matters, how the evidence supports the claims, and which questions remain open. Each entry is labeled by the contribution the paper makes — chemical diversity, biosynthesis, research methodology, or review.</p>
     </header>
 
     {articles.length > 0 ? (
@@ -41,7 +41,7 @@ const articles = (await getCollection(
     ) : (
       <div class="empty-section">
         <span>Articles 000</span>
-        <h2>The reading list is open; the first paper perspective is not yet published.</h2>
+        <h2>The reading list is open; the first article is not yet published.</h2>
         <p>Articles will begin with a clearly cited paper and distinguish its reported evidence from the author's interpretation.</p>
       </div>
     )}

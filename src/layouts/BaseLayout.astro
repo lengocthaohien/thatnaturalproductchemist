@@ -32,14 +32,21 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <span class="wordmark-mark" aria-hidden="true">TNPC</span>
         <span>That Natural Product Chemist</span>
       </a>
-      <nav aria-label="Primary navigation">
-        <a href="/articles/">Articles</a>
-        <a href="/opinions/">Opinions</a>
-        <a href="/exercises/">Exercises</a>
-        <a href="/examples/">Examples</a>
-        <a href="/about/">About</a>
-        <a href="/contribute/">Contribute</a>
-      </nav>
+      <div class="header-tools">
+        <nav aria-label="Primary navigation">
+          <a href="/articles/">Articles</a>
+          <a href="/opinions/">Opinions</a>
+          <a href="/exercises/">Exercises</a>
+          <a href="/examples/">Examples</a>
+          <a href="/about/">About</a>
+          <a href="/contribute/">Contribute</a>
+        </nav>
+        <form class="site-search" action="/search/" method="get" role="search">
+          <label class="visually-hidden" for="site-search-input">Search the site</label>
+          <input id="site-search-input" type="search" name="q" placeholder="Search" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
     </header>
     <main id="main-content">
       <slot />

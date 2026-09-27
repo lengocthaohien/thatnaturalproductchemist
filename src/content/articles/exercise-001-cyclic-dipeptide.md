@@ -101,7 +101,7 @@ The unknown is a small nitrogen-containing natural product. Use the supplied evi
 
 ## Experimental context
 
-Experiments 31–35 form one primary acquisition series in DMSO-d6 at approximately 298 K. Experiment 30 is an earlier proton acquisition at approximately 300 K and must be treated as a comparison rather than part of the same session.
+Experiments 31–35 form one primary acquisition series in DMSO-d6 at approximately 298 K. Experiment 30 is an earlier proton acquisition at approximately 300 K and must be treated as a comparison rather than part of the same session. Proton chemical-shift scales were verified against the residual DMSO-d₆ resonance at 2.50 ppm (Cambridge Isotope Laboratories NMR Solvent Data Chart). The ¹³C axis currently reads the residual DMSO-d₆ septet near 40.0 ppm rather than the chart value of 39.51 ppm, so treat absolute ¹³C readings as provisional until the data are re-referenced.
 
 | Stage | Experiment | What to establish |
 | ---: | --- | --- |
@@ -116,7 +116,7 @@ Experiments 31–35 form one primary acquisition series in DMSO-d6 at approximat
 
 ![Proton NMR overview for Exercise 001 at 600 MHz in DMSO-d6, plotted from 10 to 0 ppm.](/media/exercises/exercise-001-cyclic-dipeptide/proton-600-mhz.svg)
 
-*Figure 1. Processed 1H NMR overview for Experiment 31 (600 MHz, DMSO-d6). Intensity is normalized for display. Inspect the interactive data or download package before measuring shifts or integrals.*
+*Figure 1. Processed 1H NMR overview for Experiment 31 (600 MHz, DMSO-d6). Intensity is normalized for display. The arrow marks the residual DMSO-d₆ resonance at 2.50 ppm, the chemical-shift reference (Cambridge Isotope Laboratories NMR Solvent Data Chart). Inspect the interactive data or download package before measuring shifts or integrals.*
 
 Create an observation table before assigning any atom labels. Which regions appear methyl-like, methylene-like, methine-like, or exchangeable? Which signals require the two-dimensional data before they can be separated confidently?
 

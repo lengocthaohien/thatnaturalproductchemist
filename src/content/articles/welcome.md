@@ -26,7 +26,7 @@ The first full case study follows **Cyclo(L-Pro-L-Leu)**, also known as **Gancid
 
 ## Four ways to read
 
-**Articles** offer close readings and perspectives on noteworthy papers. **Opinions** assess tools and present reasoned viewpoints with their context made clear. **Exercises** ask readers to interpret evidence before the structure is revealed. **Examples** keep the structure visible while demonstrating what a technique contributes and how the reasoning works.
+**Articles** offer close readings of noteworthy papers, each labeled by the contribution the paper makes: chemical diversity, biosynthesis, research methodology, or review. **Opinions** assess tools and present reasoned viewpoints with their context made clear. **Exercises** ask readers to interpret evidence before the structure is revealed. **Examples** keep the structure visible while demonstrating what a technique contributes and how the reasoning works.
 
 ## A shared laboratory notebook
 

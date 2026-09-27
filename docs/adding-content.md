@@ -32,6 +32,7 @@ Frontmatter is validated at build time by `src/content.config.ts`. Required fiel
 | --- | --- | --- |
 | `section` * | `article \| opinion \| exercise \| example` | Chooses the section and URL. |
 | `format` * | see list below | Must be compatible with `section` (see validation rules). |
+| `paperType` | `chemical-diversity \| biosynthesis \| research-methodology \| review` | **Required for articles**, forbidden for other sections. Shown as the kicker above the title and in listings; see "Article types" below. |
 | `title` * | string | |
 | `summary` * | string | One or two sentences; used for listings and `<meta name="description">`. |
 | `category` | `field-note \| structure-elucidation \| reference` | Optional. |
@@ -49,11 +50,20 @@ Frontmatter is validated at build time by `src/content.config.ts`. Required fiel
 
 Allowed `format` values: `field-note`, `paper-perspective`, `opinion`, `tool-review`, `research-journey`, `method-note`, `reference`, `guided-exercise`, `worked-example`, `reviewed-solution`.
 
+### Article types (`paperType`)
+
+Every article declares exactly one `paperType`, chosen by the contribution the paper under discussion makes. It replaces the old generic "paper perspective" kicker above the article title and appears in section listings:
+
+- `chemical-diversity` — the paper's core contribution is new chemistry: novel skeletons, new structural classes, isolation and structure elucidation.
+- `biosynthesis` — the paper is about how organisms build natural products: gene clusters, enzymology, precursor feeding, pathway engineering.
+- `research-methodology` — the paper's core contribution is a way of working: discovery workflows, analytical or computational methods, dereplication and prioritization strategies.
+- `review` — the paper synthesizes a field (review, census, or meta-analysis) rather than reporting a single study.
+
 ### Section/format validation rules
 
 The schema enforces these pairings and fails the build if violated:
 
-- `section: article` → `format` **must** be `paper-perspective`.
+- `section: article` → `format` **must** be `paper-perspective`, and `paperType` **must** be set to one of the four article types. `paperType` must not be set for other sections.
 - `section: opinion` → `format` must be `opinion` or `tool-review`.
 - `section: exercise` / `example` → use `guided-exercise` / `reviewed-solution` / `worked-example` as appropriate.
 
@@ -115,11 +125,17 @@ Opening paragraph that states the question and why it matters.
 Body text. Keep observations separate from interpretation, and name uncertainties.
 ```
 
-## 4. The draft / review gate
+## 4. Text style rules
+
+- Main body text is rendered **justified** (like scientific papers) with automatic hyphenation. Write normal flowing paragraphs; never insert manual line breaks, double spaces, or blank lines to influence alignment.
+- Headings, figure captions, and metadata (kicker, author line, footer notes) are intentionally left-aligned — leave them as plain Markdown.
+- Use `##` for sections and `*emphasis*` on the line directly after a figure for its caption.
+
+## 5. The draft / review gate
 
 `draft` **defaults to `true`**. A draft entry is validated during `npm run build` but is **not** assigned a route, so it never reaches the public site. Publish by setting `draft: false` only after scientific review: verify every chemical shift, integral, multiplicity, correlation, atom label, and acquisition metadata against the spectra. Keep `solutionStatus: withheld` on exercises until the solution has passed review, and never reveal a structure in an exercise's title, figures, filenames, or metadata.
 
-## 5. Adding figures and data
+## 6. Adding figures and data
 
 Follow [media-authoring.md](media-authoring.md). In short:
 
@@ -128,7 +144,7 @@ Follow [media-authoring.md](media-authoring.md). In short:
 - Every image needs descriptive alt text and a nearby scientific caption (technique, sample context, conditions, what to inspect, any normalization).
 - **Sanitize before publishing**: remove local file paths, usernames, sample identifiers, audit trails, and credentials from every exported figure, PDF, and data package. Instrument-software exports frequently embed workstation paths — check them.
 
-## 6. Local checks
+## 7. Local checks
 
 ```sh
 npm install

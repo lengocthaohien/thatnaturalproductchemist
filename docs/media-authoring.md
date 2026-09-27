@@ -76,6 +76,14 @@ Avoid embedded PDF viewers. Direct links work better across mobile browsers, ass
 - Confirm that you created the asset or have permission to publish it under the stated content license.
 - Run `npm run build` and inspect the generated page.
 
+## NMR spectrum conventions
+
+These rules apply to every NMR figure and dataset published on the site:
+
+- **Calibration.** Reference every NMR spectrum to the residual solvent values in the Cambridge Isotope Laboratories NMR Solvent Data Chart (`nmrsolventschart_001.pdf`, repository root) — for DMSO-d₆, δH 2.50 ppm and δC 39.51 ppm. Do not use rounded or outdated conventions (e.g. 2.4 ppm for DMSO), and state the referencing in the figure caption.
+- **Note placement.** Place every note or label that sits on a spectrum in the top-left corner of its plotting area; never float labels in the middle of a spectrum. Provenance footnotes belong below the axis, outside the plotting area.
+- **Solvent annotation.** Mark the residual solvent peak directly: put the solvent note on top of or beside the solvent peak and draw an arrow pointing to the peak whenever the format allows it.
+
 ## Reproducing Exercise 001 previews
 
 After preparing the sanitized browser ZIP, regenerate the committed static figures with:

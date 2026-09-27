@@ -4,7 +4,7 @@ That Natural Product Chemist accepts topic proposals, scientific corrections, an
 
 Read [ideology.md](ideology.md) before proposing a contribution. Choose one publication form:
 
-- **Articles** are close readings and perspectives on noteworthy scientific papers.
+- **Articles** are close readings and perspectives on noteworthy scientific papers. Each article is labeled with one of four article types — chemical diversity, biosynthesis, research methodology, or review — chosen by the contribution the paper makes (see [docs/adding-content.md](docs/adding-content.md)).
 - **Opinions** present reasoned positions or practical assessments of tools, with evidence and preference clearly distinguished.
 - **Exercises** present evidence progressively and must not reveal the structure in titles, figures, filenames, metadata, downloads, or early text. Solutions require scientific review.
 - **Examples** show the structure from the beginning while demonstrating what selected techniques contribute and how the reasoning works.
@@ -44,6 +44,11 @@ Every contribution must declare:
 Do not commit raw workstation folders, private paths, usernames, audit logs, personal data, credentials, or files whose publication rights are unclear. Large teaching packages belong in a public GitHub Release; citable research deposits may belong in Zenodo. Link the stable record from entry metadata.
 
 Follow [docs/media-authoring.md](docs/media-authoring.md) for figures and PDFs. Every figure needs meaningful alt text and a nearby scientific caption. PDFs must be direct supplementary downloads, not the only place where essential observations or conclusions can be read.
+
+## Style rules
+
+- Main body text is typeset **justified**, as in scientific papers. Write in full paragraphs and never use manual line breaks, trailing spaces, or extra blank lines to control alignment — the stylesheet handles it.
+- Headings, captions, metadata, and other small texts stay left-aligned; do not try to center or pad them in Markdown.
 
 ## Scientific review
 

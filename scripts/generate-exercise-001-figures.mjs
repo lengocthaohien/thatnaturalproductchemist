@@ -76,6 +76,17 @@ function renderProton(spectrum) {
     })
     .join('');
 
+  // Residual solvent annotation: DMSO-d₆ at 2.50 ppm, the calibration reference
+  // from the Cambridge Isotope Laboratories NMR Solvent Data Chart
+  // (nmrsolventschart_001.pdf). The note sits next to the solvent peak with an
+  // arrow pointing at it.
+  const solventPpm = 2.5;
+  const solventBin = Math.round(((maxPpm - solventPpm) / (maxPpm - minPpm)) * bins);
+  const solventX = plot.left + (solventBin / (points.length - 1)) * (plot.right - plot.left);
+  const solventNormalized = clamp((points[solventBin] - baseline) / scale, -0.04, 1.05);
+  const solventY = plot.bottom - solventNormalized * (plot.bottom - plot.top);
+  const solventNoteY = Math.max(30, solventY - 44);
+
   return svgDocument(
     width,
     height,
@@ -84,6 +95,8 @@ function renderProton(spectrum) {
      <line class="axis" x1="${plot.left}" y1="${plot.bottom}" x2="${plot.right}" y2="${plot.bottom}"/>
      <g class="ticks">${ticks}<text x="${plot.right}" y="${plot.bottom + 70}" text-anchor="end">δ / ppm</text></g>
      <path class="trace" d="${path}"/>
+     <text class="note" x="${solventX}" y="${solventNoteY}" text-anchor="end">2.50 ppm = residual DMSO-d₆</text>
+     <line class="arrow" x1="${solventX}" y1="${solventNoteY + 7}" x2="${solventX}" y2="${solventY - 7}" marker-end="url(#arrowhead)"/>
      <text class="note" x="${plot.left}" y="590">Display trace generated from the sanitized processed real array; intensity is normalized for overview.</text>`,
   );
 }
@@ -132,7 +145,7 @@ function renderHsqc(spectrum) {
      <g class="contours positive">${positivePaths}</g>
      <g class="contours negative">${negativePaths}</g>
      <g class="ticks">${xTicks}${yTicks}<text x="${plot.right}" y="${plot.bottom + 66}" text-anchor="end">δ ¹H / ppm</text><text transform="translate(26 ${plot.top}) rotate(-90)" text-anchor="end">δ ¹³C / ppm</text></g>
-    <g class="legend"><line x1="960" y1="74" x2="995" y2="74" class="positive-key"/><text x="1005" y="79">positive phase</text><line x1="1155" y1="74" x2="1190" y2="74" class="negative-key"/><text x="1200" y="79">negative phase</text></g>
+    <g class="legend"><line x1="110" y1="96" x2="145" y2="96" class="positive-key"/><text x="155" y="101">positive phase</text><line x1="270" y1="96" x2="305" y2="96" class="negative-key"/><text x="315" y="101">negative phase</text></g>
      <text class="note" x="${plot.left}" y="880">Contours generated from the sanitized processed real matrix; levels are normalized for overview.</text>`,
   );
 }
@@ -180,8 +193,13 @@ function geometryPath(multiPolygon, plot, gridWidth, gridHeight) {
 function svgDocument(width, height, contents) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img">
   <style>
-    .label,.ticks,.legend,.note{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.label{font-size:17px;fill:#5E3A52}.title{font-family:Georgia,serif;font-size:27px;fill:#3D2036}.axis,.ticks line,.plot{stroke:#3D2036;stroke-width:1;fill:none}.ticks,.legend{font-size:15px;fill:#3D2036}.trace{stroke:#C9A227;stroke-width:1.5;fill:none}.contours path{fill:none;stroke-width:1}.positive path,.positive-key{stroke:#5E3A52}.negative path,.negative-key{stroke:#C9A227}.note{font-size:13px;fill:#7A6A5F}
+    .label,.ticks,.legend,.note{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.label{font-size:17px;fill:#5E3A52}.title{font-family:Georgia,serif;font-size:27px;fill:#3D2036}.axis,.ticks line,.plot{stroke:#3D2036;stroke-width:1;fill:none}.ticks,.legend{font-size:15px;fill:#3D2036}.trace{stroke:#C9A227;stroke-width:1.5;fill:none}.contours path{fill:none;stroke-width:1}.positive path,.positive-key{stroke:#5E3A52}.negative path,.negative-key{stroke:#C9A227}.note{font-size:13px;fill:#7A6A5F}.arrow{stroke:#7A6A5F;stroke-width:1.2;fill:none}
   </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#7A6A5F"/>
+    </marker>
+  </defs>
   <rect width="100%" height="100%" fill="#E7DCC0"/>
   ${contents}
 </svg>\n`;

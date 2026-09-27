@@ -12,7 +12,7 @@ No technique is presented as sufficient by default. The useful question is what 
 
 ### Articles
 
-Articles examine noteworthy scientific papers. They should identify the paper clearly, explain why it merits attention, distinguish what the authors reported from the contributor's interpretation, and discuss the strength, limits, and implications of the evidence.
+Articles examine noteworthy scientific papers. They should identify the paper clearly, explain why it merits attention, distinguish what the authors reported from the contributor's interpretation, and discuss the strength, limits, and implications of the evidence. Every article carries one of four labels, chosen by the contribution the paper makes: **chemical diversity**, **biosynthesis**, **research methodology**, or **review**.
 
 ### Opinions
 

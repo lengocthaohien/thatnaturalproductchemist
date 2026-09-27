@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap');
-
 :root {
   --ink: #3D2036;
   --paper: #FDFCF9;
@@ -7,10 +6,13 @@
   --green: #5E3A52;
   --signal: #C9A227;
   --rule: #DDD6CB;
-  font-family: 'Newsreader', Georgia, serif;
+  /* Entry pages: the reading column claims half of the free space on each
+     side beyond the original 64rem measure, capped at 96rem for readability. */
+  --entry-measure: min(32rem + 50vw, 96rem);
   color: var(--ink);
   background: var(--paper);
   font-synthesis: none;
+  font-family: 'Newsreader', Georgia, serif;
 }
 
 * {
@@ -23,9 +25,9 @@ html {
 }
 
 body {
+  background: var(--paper);
   min-width: 320px;
   margin: 0;
-  background: var(--paper);
 }
 
 a {
@@ -33,13 +35,13 @@ a {
 }
 
 .skip-link {
-  position: fixed;
   z-index: 10;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.65rem 0.85rem;
+  position: fixed;
   top: 0.75rem;
   left: 0.75rem;
-  padding: 0.65rem 0.85rem;
-  background: var(--ink);
-  color: white;
   transform: translateY(-180%);
 }
 
@@ -49,26 +51,26 @@ a {
 
 .site-header,
 .site-footer {
-  display: flex;
-  width: min(100% - 2rem, 88rem);
-  margin-inline: auto;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 2rem;
+  display: flex;
 }
 
 .site-header {
-  min-height: 6.5rem;
   border-bottom: 1px solid var(--ink);
+  width: min(100% - 2rem, 88rem);
+  min-height: 6.5rem;
+  margin-inline: auto;
 }
 
 .wordmark {
-  display: flex;
   align-items: center;
   gap: 0.85rem;
   font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
+  display: flex;
 }
 
 .wordmark-mark,
@@ -83,46 +85,52 @@ nav,
 }
 
 .wordmark-mark {
-  display: grid;
-  width: 2.8rem;
   aspect-ratio: 1;
+  border: 1px solid var(--green);
+  background: var(--green);
+  width: 2.8rem;
+  color: var(--paper);
   place-items: center;
-  border: 1px solid var(--ink);
-  color: var(--green);
   font-size: 0.7rem;
+  display: grid;
 }
 
 nav {
-  display: flex;
+  text-transform: uppercase;
   gap: clamp(1rem, 3vw, 2.75rem);
   font-size: 0.75rem;
-  text-transform: uppercase;
+  display: flex;
 }
 
 nav a,
 .text-link {
-  text-decoration-thickness: 1px;
   text-underline-offset: 0.35rem;
+  text-decoration-thickness: 1px;
 }
 
+/* Single left-aligned column: copy is vertically centred, the decorative
+   spectrum figure sits underneath at full width. */
 .hero {
-  display: grid;
-  min-height: calc(100vh - 6.5rem);
+  flex-direction: column;
+  justify-content: center;
   width: min(100% - 2rem, 88rem);
+  min-height: calc(100vh - 6.5rem);
   margin-inline: auto;
-  grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.85fr);
-  align-items: center;
-  /* Smaller centre gap pulls the spectrum canvas toward the middle/left. */
-  gap: clamp(1.5rem, 4vw, 4rem);
   padding-block: 3rem 5rem;
+  display: flex;
+}
+
+/* Hero copy (eyebrow, title, subtitle) is centred on the page. */
+.hero-copy {
+  text-align: center;
 }
 
 .eyebrow,
 .section-number {
-  margin: 0 0 2rem;
   color: var(--green);
-  font-size: 0.72rem;
   text-transform: uppercase;
+  margin: 0 0 2rem;
+  font-size: 0.72rem;
 }
 
 h1,
@@ -133,86 +141,123 @@ p {
 }
 
 h1 {
+  letter-spacing: 0;
   max-width: 12ch;
   margin-bottom: 2rem;
   font-size: clamp(3rem, 5.5vw, 6rem);
   font-weight: 400;
   line-height: 0.9;
-  letter-spacing: 0;
 }
 
-/* The hero title carries an explicit line break; let each half stay on one line. */
+/* The hero title has no explicit line break; keep it on a single line. */
 .hero h1 {
+  white-space: nowrap;
   max-width: none;
   font-size: clamp(2.75rem, 5vw, 5.25rem);
   line-height: 1;
 }
 
+/* Wide measure + balancing settles the hero subtitle into two even lines;
+   auto inline margins centre the block under the title. */
 .hero-intro {
-  max-width: 32rem;
+  margin-inline: auto;
+  text-wrap: balance;
+  max-width: 58rem;
   margin-bottom: 2rem;
   font-size: clamp(1.3rem, 2vw, 1.75rem);
   line-height: 1.35;
 }
 
 .text-link {
+  text-transform: uppercase;
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 0.78rem;
+}
+
+.hero-links {
   text-transform: uppercase;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  display: grid;
+}
+
+.hero-links a {
+  border-top: 1px solid var(--ink);
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-top: 0.85rem;
+  text-decoration: none;
+  display: flex;
+}
+
+.hero-links a:hover,
+.hero-links a:focus-visible {
+  color: var(--green);
+}
+
+.hero-links a > span:first-child {
+  color: var(--green);
+  font-size: 0.68rem;
+}
+
+.hero-links a > span:last-child {
+  margin-left: auto;
 }
 
 .spectrum-panel {
-  position: relative;
-  height: 28rem;
-  border-left: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
   background: rgba(255, 255, 255, 0.55);
+  height: 16rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  position: relative;
 }
 
 .spectrum-label,
 .spectrum-axis {
-  display: flex;
-  justify-content: space-between;
   color: var(--green);
-  font-size: 0.68rem;
   text-transform: uppercase;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  display: flex;
 }
 
 .spectrum-label {
-  padding: 1rem;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--rule);
+  padding: 1rem;
 }
 
 .spectrum-trace {
-  position: absolute;
-  inset: 4rem 1rem 2.5rem;
-  /* Replaced element: explicit dimensions are required, otherwise the inset
-     bottom is ignored and the SVG overflows the panel at intrinsic height. */
+  border-bottom: 1px solid var(--ink);
   width: calc(100% - 2rem);
   height: calc(100% - 6.5rem);
   display: block;
-  border-bottom: 1px solid var(--ink);
+  position: absolute;
+  inset: 4rem 1rem 2.5rem;
 }
 
 .spectrum-trace path {
-  stroke: var(--green); /* aubergine trace */
-  stroke-width: 1.5;
+  stroke: var(--green);
+  stroke-width: 1.5px;
   fill: none;
 }
 
 .spectrum-axis {
+  color: var(--ink);
   position: absolute;
-  right: 1rem;
   bottom: 0.7rem;
   left: 1rem;
-  color: var(--ink);
+  right: 1rem;
 }
 
 .principles {
-  padding: 6rem max(1rem, calc((100% - 88rem) / 2));
   background: var(--green);
   color: var(--paper);
+  padding: 6rem max(1rem, 50% - 44rem);
 }
 
 .principles .section-number {
@@ -220,24 +265,24 @@ h1 {
 }
 
 .principles h2 {
-  max-width: 18ch;
+  letter-spacing: 0;
+  max-width: none;
   margin-bottom: 4rem;
   font-size: clamp(2.75rem, 5vw, 5.5rem);
   font-weight: 400;
   line-height: 0.98;
-  letter-spacing: 0;
 }
 
 .principle-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid #8A6A7E;
+  grid-template-columns: repeat(3, 1fr);
+  display: grid;
 }
 
 .principle-grid article {
+  border-right: 1px solid #8A6A7E;
   min-height: 15rem;
   padding: 1.5rem 2rem 1rem 0;
-  border-right: 1px solid #8A6A7E;
 }
 
 .principle-grid article + article {
@@ -260,15 +305,26 @@ h1 {
 }
 
 .principle-grid p {
-  max-width: 24rem;
   color: #EDE2CE;
+  max-width: 24rem;
   line-height: 1.55;
 }
 
+/* Full-bleed aubergine band with white text, echoing the .principles section
+   on the home page; the horizontal padding reproduces the shared content
+   measure so the copy still aligns with the header above. */
 .site-footer {
+  background: var(--green);
   min-height: 8rem;
-  font-size: 0.68rem;
+  color: var(--paper);
   text-transform: uppercase;
+  padding: 2.5rem max(1rem, 50% - 44rem);
+  font-size: 0.68rem;
+}
+
+/* Muted lavender for the licensing line, matching the principles accents. */
+.site-footer p + p {
+  color: #D8C6DD;
 }
 
 .site-footer p {
@@ -281,6 +337,10 @@ h1 {
   margin-inline: auto;
 }
 
+.article-shell {
+  width: min(100% - 2rem, 96rem);
+}
+
 .listing-header {
   max-width: 70rem;
   padding-block: clamp(5rem, 10vw, 9rem);
@@ -288,18 +348,34 @@ h1 {
 
 /* Unified with the hero so headings look consistent across every tab, and a
    wider measure keeps long titles to two lines instead of three. */
-.listing-header h1,
-.article-header h1 {
+.listing-header h1 {
   max-width: 26ch;
   font-size: clamp(2.75rem, 5vw, 5.25rem);
   line-height: 1;
 }
 
+/* Entry titles spread across the widened header; a slightly smaller scale and
+   balanced wrapping settle long titles on two lines instead of three or four. */
+.article-header h1 {
+  max-width: none;
+  font-size: clamp(2.5rem, 4vw, 4.25rem);
+  line-height: 1;
+  text-wrap: balance;
+}
+
 .listing-header > p:last-child,
 .article-summary {
-  max-width: 40rem;
   font-size: 1.45rem;
   line-height: 1.4;
+}
+
+.listing-header > p:last-child {
+  max-width: 40rem;
+}
+
+/* A wider measure spreads the entry subtitle across two to three lines. */
+.article-summary {
+  max-width: 56rem;
 }
 
 .article-list {
@@ -307,11 +383,11 @@ h1 {
 }
 
 .article-list article {
-  display: grid;
+  border-bottom: 1px solid var(--rule);
   grid-template-columns: 3rem 1fr auto;
   gap: 1.5rem;
   padding-block: 2rem;
-  border-bottom: 1px solid var(--rule);
+  display: grid;
 }
 
 .article-list article > span,
@@ -328,8 +404,8 @@ h1 {
 .article-list article > time,
 .article-list article div > p:first-child {
   color: var(--green);
-  font-size: 0.72rem;
   text-transform: uppercase;
+  font-size: 0.72rem;
 }
 
 .article-list h2 {
@@ -343,9 +419,8 @@ h1 {
 }
 
 .article-list h2 a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
   text-underline-offset: 0.4rem;
+  text-decoration: underline 1px;
 }
 
 .article-list article div > p:last-child {
@@ -355,40 +430,41 @@ h1 {
 }
 
 .article-header {
-  max-width: 72rem;
+  max-width: var(--entry-measure);
+  margin-inline: auto;
   padding-block: clamp(5rem, 10vw, 9rem) 4rem;
 }
 
 .article-kicker {
-  display: flex;
-  margin-bottom: 2rem;
-  gap: 2rem;
   color: var(--green);
-  font-size: 0.72rem;
   text-transform: uppercase;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.72rem;
+  display: flex;
 }
 
 .article-meta {
-  display: flex;
-  margin: 3rem 0 0;
   gap: 3rem;
+  margin: 3rem 0 0;
+  display: flex;
 }
 
 .article-meta div {
-  display: grid;
   gap: 0.4rem;
+  display: grid;
 }
 
 .article-meta dt {
   color: var(--green);
-  font-size: 0.65rem;
   text-transform: uppercase;
+  font-size: 0.65rem;
 }
 
 .article-meta dd {
+  text-transform: capitalize;
   margin: 0;
   font-size: 0.75rem;
-  text-transform: capitalize;
 }
 
 .article-meta dd a {
@@ -396,19 +472,28 @@ h1 {
 }
 
 .correction-note {
-  max-width: 48rem;
+  margin-inline: auto;
+  border: 1px solid var(--signal);
+  max-width: var(--entry-measure);
   margin-bottom: 3rem;
   padding: 1rem;
-  border: 1px solid var(--signal);
 }
 
 .article-body {
-  max-width: 48rem;
-  margin-left: clamp(0rem, 12vw, 12rem);
-  padding-block: 3rem 6rem;
   border-top: 1px solid var(--ink);
+  max-width: var(--entry-measure);
+  margin-inline: auto;
+  padding-block: 3rem 6rem;
   font-size: 1.2rem;
   line-height: 1.7;
+}
+
+/* Main text is justified like scientific papers; hyphenation avoids large
+   word gaps. Captions and headings stay left-aligned. */
+.article-body p,
+.article-body li {
+  text-align: justify;
+  hyphens: auto;
 }
 
 .article-body h2 {
@@ -419,33 +504,36 @@ h1 {
 }
 
 .article-body img {
-  display: block;
+  border: 1px solid var(--rule);
+  background: var(--paper);
   width: 100%;
   height: auto;
   margin-top: 2rem;
-  border: 1px solid var(--rule);
-  background: var(--paper);
+  display: block;
 }
 
 .article-body p:has(> img) + p > em:only-child {
-  display: block;
+  text-align: left;
   color: #7A6A5F;
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 0.68rem;
   font-style: normal;
   line-height: 1.55;
+  display: block;
 }
 
 .article-footer {
+  margin-inline: auto;
+  border-top: 1px solid var(--ink);
+  max-width: var(--entry-measure);
   margin-bottom: 5rem;
   padding: 2rem 0;
-  border-top: 1px solid var(--ink);
   font-size: 0.72rem;
   line-height: 1.6;
 }
 
 .article-footer section {
-  max-width: 48rem;
+  max-width: var(--entry-measure);
   margin-bottom: 2rem;
 }
 
@@ -460,10 +548,10 @@ h1 {
 }
 
 .featured-dataset {
-  display: grid;
-  grid-template-columns: minmax(9rem, 0.25fr) minmax(20rem, 1fr) minmax(18rem, 0.65fr);
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
+  grid-template-columns: minmax(9rem, 0.25fr) minmax(20rem, 1fr) minmax(18rem, 0.65fr);
+  display: grid;
 }
 
 .dataset-status,
@@ -473,11 +561,11 @@ h1 {
 }
 
 .dataset-status {
-  display: flex;
-  padding-left: 0;
   border-right: 1px solid var(--rule);
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 0;
+  display: flex;
 }
 
 .dataset-status span,
@@ -494,15 +582,15 @@ h1 {
 .dataset-copy > p:first-child,
 .contribution-options span {
   color: var(--green);
-  font-size: 0.68rem;
   text-transform: uppercase;
+  font-size: 0.68rem;
 }
 
 .dataset-status strong {
   color: var(--ink);
+  text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: 500;
-  text-transform: uppercase;
 }
 
 .dataset-copy h2 {
@@ -524,11 +612,11 @@ h1 {
 }
 
 .dataset-copy dl {
-  display: grid;
-  margin: 3rem 0 0;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  margin: 3rem 0 0;
   font-size: 0.7rem;
+  display: grid;
 }
 
 .dataset-copy dl div {
@@ -550,12 +638,12 @@ h1 {
 }
 
 .dataset-experiments div {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  padding-block: 0.85rem;
   border-bottom: 1px solid var(--rule);
+  grid-template-columns: 2rem 1fr;
   gap: 0.75rem;
+  padding-block: 0.85rem;
   font-size: 0.7rem;
+  display: grid;
 }
 
 .dataset-experiments span {
@@ -563,29 +651,29 @@ h1 {
 }
 
 .dataset-experiments small {
-  grid-column: 2;
   color: var(--green);
   text-transform: uppercase;
+  grid-column: 2;
 }
 
 .review-gate {
+  border-top: 1px solid var(--rule);
+  color: var(--green);
+  text-transform: uppercase;
   grid-column: 1 / -1;
   margin: 0;
   padding: 1rem 0;
-  border-top: 1px solid var(--rule);
-  color: var(--green);
   font-size: 0.7rem;
-  text-transform: uppercase;
 }
 
 .text-page {
-  display: grid;
+  grid-template-columns: minmax(18rem, 0.7fr) minmax(24rem, 1.3fr);
+  gap: clamp(2rem, 5vw, 5rem);
   width: min(100% - 2rem, 88rem);
   min-height: 70vh;
   margin-inline: auto;
   padding-block: clamp(5rem, 10vw, 9rem);
-  grid-template-columns: minmax(20rem, 0.8fr) minmax(22rem, 1fr);
-  gap: clamp(3rem, 8vw, 10rem);
+  display: grid;
 }
 
 .text-page header h1 {
@@ -595,8 +683,8 @@ h1 {
 }
 
 .text-page-body {
-  padding-top: 3rem;
   border-top: 1px solid var(--ink);
+  padding-top: 3rem;
   font-size: 1.15rem;
   line-height: 1.65;
 }
@@ -613,13 +701,9 @@ h1 {
   font-weight: 400;
 }
 
-.contribute-page {
-  grid-template-columns: minmax(22rem, 0.9fr) minmax(24rem, 1fr);
-}
-
 .contribution-options section {
-  padding-block: 1.5rem 2rem;
   border-top: 1px solid var(--rule);
+  padding-block: 1.5rem 2rem;
 }
 
 .contribution-options h2 {
@@ -640,22 +724,28 @@ h1 {
 }
 
 .contribution-options a {
-  font-size: 0.7rem;
   text-underline-offset: 0.3rem;
   text-transform: uppercase;
+  font-size: 0.7rem;
 }
 
 .example-submission-trigger,
 .example-submission-actions button {
+  border: 1px solid var(--green);
+  background: var(--green);
   min-height: 2.75rem;
-  padding: 0.65rem 0.9rem;
-  border: 1px solid var(--ink);
-  border-radius: 0;
-  background: var(--ink);
   color: var(--paper);
   cursor: pointer;
-  font-size: 0.7rem;
   text-transform: uppercase;
+  border-radius: 0;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.7rem;
+}
+
+.example-submission-trigger:hover,
+.example-submission-actions button:not(.secondary-button):hover {
+  border-color: var(--ink);
+  background: var(--ink);
 }
 
 .example-submission-noscript {
@@ -664,13 +754,13 @@ h1 {
 }
 
 .example-submission-dialog {
-  width: min(calc(100% - 2rem), 60rem);
-  max-height: calc(100dvh - 2rem);
-  padding: 0;
   border: 1px solid var(--ink);
-  border-radius: 0;
   background: var(--paper);
+  width: min(100% - 2rem, 60rem);
+  max-height: calc(100dvh - 2rem);
   color: var(--ink);
+  border-radius: 0;
+  padding: 0;
 }
 
 .example-submission-dialog::backdrop {
@@ -682,12 +772,12 @@ h1 {
 }
 
 .example-submission-header {
-  display: flex;
-  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--ink);
-  align-items: flex-start;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 2rem;
+  padding-bottom: 1.5rem;
+  display: flex;
 }
 
 .example-submission-header p,
@@ -696,11 +786,11 @@ h1 {
 }
 
 .example-submission-header p {
-  margin-bottom: 0.75rem;
   color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
   font-family: 'DM Mono', ui-monospace, monospace;
   font-size: 0.68rem;
-  text-transform: uppercase;
 }
 
 .example-submission-header h2 {
@@ -711,18 +801,18 @@ h1 {
 }
 
 .example-submission-dialog .dialog-close {
-  display: grid;
+  aspect-ratio: 1;
+  border: 1px solid var(--ink);
   width: 2.75rem;
   min-width: 2.75rem;
-  aspect-ratio: 1;
-  padding: 0;
-  border: 1px solid var(--ink);
-  border-radius: 0;
-  background: transparent;
   color: var(--ink);
   cursor: pointer;
+  background: transparent;
+  border-radius: 0;
   place-items: center;
+  padding: 0;
   font-size: 1.5rem;
+  display: grid;
 }
 
 .example-submission-intro {
@@ -732,41 +822,41 @@ h1 {
 }
 
 .example-submission-form fieldset {
-  display: grid;
-  margin: 2.5rem 0 0;
-  padding: 1.5rem 0 0;
   border: 0;
   border-top: 1px solid var(--rule);
   gap: 1.25rem;
+  margin: 2.5rem 0 0;
+  padding: 1.5rem 0 0;
+  display: grid;
 }
 
 .example-submission-form legend {
-  padding: 0 1rem 0 0;
   color: var(--green);
-  font-size: 0.72rem;
   text-transform: uppercase;
+  padding: 0 1rem 0 0;
+  font-size: 0.72rem;
 }
 
 .example-submission-form legend span {
-  margin-right: 0.75rem;
   color: var(--ink);
+  margin-right: 0.75rem;
 }
 
 .example-submission-form label:not(.check-field) {
-  display: grid;
   gap: 0.55rem;
   font-size: 1rem;
+  display: grid;
 }
 
-.example-submission-form input[type='text'],
-.example-submission-form input[type='url'],
+.example-submission-form input[type=text],
+.example-submission-form input[type=url],
 .example-submission-form textarea {
-  width: 100%;
-  padding: 0.75rem;
   border: 1px solid var(--rule);
-  border-radius: 0;
-  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
   color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+  padding: 0.75rem;
   font-size: 0.78rem;
   line-height: 1.5;
 }
@@ -783,57 +873,58 @@ h1 {
 }
 
 .field-guidance {
-  margin: -0.75rem 0 0;
   color: #7A6A5F;
+  margin: -0.75rem 0 0;
   font-size: 0.68rem;
   line-height: 1.5;
 }
 
 .check-field {
-  display: grid;
   grid-template-columns: 1.1rem 1fr;
   align-items: start;
   gap: 0.75rem;
   line-height: 1.45;
+  display: grid;
 }
 
 .check-field input {
   width: 1rem;
   height: 1rem;
-  margin: 0.2rem 0 0;
   accent-color: var(--green);
+  margin: 0.2rem 0 0;
 }
 
 .conditional-label {
   color: var(--green);
-  font-size: 0.65rem;
   text-transform: uppercase;
+  font-size: 0.65rem;
 }
 
 .example-submission-actions {
-  display: flex;
-  margin-top: 2.5rem;
   justify-content: flex-end;
   gap: 0.75rem;
+  margin-top: 2.5rem;
+  display: flex;
 }
 
 .example-submission-actions .secondary-button {
-  background: transparent;
+  border-color: var(--ink);
   color: var(--ink);
+  background: transparent;
 }
 
 .submission-status {
-  margin: 1rem 0 0;
   color: var(--green);
+  margin: 1rem 0 0;
   font-size: 0.7rem;
   line-height: 1.5;
 }
 
 .prepared-issue-link {
-  display: inline-block;
+  text-transform: uppercase;
   margin-top: 0.75rem;
   font-size: 0.7rem;
-  text-transform: uppercase;
+  display: inline-block;
 }
 
 .prepared-issue-link[hidden] {
@@ -841,16 +932,16 @@ h1 {
 }
 
 .empty-section {
+  border-top: 1px solid var(--ink);
   max-width: 58rem;
   padding: 3rem 0 6rem;
-  border-top: 1px solid var(--ink);
 }
 
 .empty-section > span {
-  font-family: 'DM Mono', ui-monospace, monospace;
   color: var(--green);
-  font-size: 0.68rem;
   text-transform: uppercase;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
 }
 
 .empty-section h2 {
@@ -866,119 +957,214 @@ h1 {
   line-height: 1.55;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Header: primary navigation and the site-wide search box sit together. */
+.header-tools {
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  display: flex;
+}
+
+.site-search {
+  align-items: center;
+  gap: 0.5rem;
+  display: flex;
+}
+
+.site-search input,
+.search-panel input {
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Mono', ui-monospace, monospace;
+}
+
+.site-search input {
+  width: 10rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.72rem;
+}
+
+.site-search input::placeholder,
+.search-panel input::placeholder {
+  color: #8A6A7E;
+}
+
+.site-search input:focus-visible,
+.search-panel input:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 0;
+  border-color: var(--ink);
+}
+
+.site-search button,
+.search-panel button {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  text-transform: uppercase;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  cursor: pointer;
+}
+
+.site-search button {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.72rem;
+}
+
+/* Search page: a larger version of the header search box. */
+.search-panel {
+  max-width: 58rem;
+  padding-bottom: 2.5rem;
+}
+
+.search-panel > label {
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  display: block;
+}
+
+.search-panel-controls {
+  gap: 0.75rem;
+  display: flex;
+}
+
+.search-panel input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+}
+
+.search-panel button {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.78rem;
+}
+
+.search-status {
+  color: var(--green);
+  margin: 0 0 1.5rem;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+}
+
 @media (max-width: 760px) {
   .site-header {
+    align-items: flex-start;
     min-height: auto;
     padding-block: 1rem;
-    align-items: flex-start;
   }
-
   .wordmark > span:last-child {
     display: none;
   }
-
+  .header-tools {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+  }
   nav {
-    display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0.65rem 1.25rem;
+    display: grid;
   }
-
+  .site-search input {
+    width: 8rem;
+  }
+  .search-panel-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
   .hero {
     min-height: auto;
-    grid-template-columns: 1fr;
-    gap: 3rem;
     padding-block: 4rem;
   }
-
-  /* Keep titles on a sane scale on small screens (was 4.5rem, which wrapped
-     everything to many lines). */
+  /* Keep every page title on the same scale as the hero on small screens
+     (was 4.5rem, which wrapped everything to many lines). */
   h1 {
-    font-size: clamp(2.25rem, 9vw, 3.25rem);
-  }
-
-  .hero h1 {
     font-size: clamp(2rem, 9vw, 3rem);
   }
-
-  .spectrum-panel {
-    height: 20rem;
+  /* Allow the hero title to wrap again so it cannot overflow narrow screens. */
+  .hero h1 {
+    white-space: normal;
   }
-
+  .hero-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .spectrum-panel {
+    height: 12rem;
+    margin-top: 3rem;
+  }
   .principle-grid {
     grid-template-columns: 1fr;
   }
-
   .principle-grid article,
   .principle-grid article + article {
+    border-bottom: 1px solid #8A6A7E;
+    border-right: 0;
     min-height: auto;
     padding: 1.5rem 0 2rem;
-    border-right: 0;
-    border-bottom: 1px solid #8A6A7E;
   }
-
   .principle-grid h3 {
     margin-top: 2rem;
   }
-
   .site-footer {
-    padding-block: 2rem;
-    align-items: flex-start;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    padding-block: 2rem;
   }
-
   .article-list article {
     grid-template-columns: 2rem 1fr;
   }
-
   .article-list article > time {
     display: none;
   }
-
   .article-meta {
-    align-items: flex-start;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1.5rem;
   }
-
-  .article-body {
-    margin-left: 0;
-  }
-
   .featured-dataset,
-  .text-page,
-  .contribute-page {
+  .text-page {
     grid-template-columns: 1fr;
   }
-
   .dataset-status {
-    min-height: 7rem;
-    padding-left: 0;
     border-right: 0;
     border-bottom: 1px solid var(--rule);
+    min-height: 7rem;
+    padding-left: 0;
   }
-
   .dataset-copy,
   .dataset-experiments {
     padding-inline: 0;
   }
-
   .dataset-experiments {
     border-top: 1px solid var(--rule);
     border-left: 0;
   }
-
   .text-page {
     gap: 2rem;
   }
-
   .example-submission-dialog {
     width: calc(100% - 1rem);
     max-height: calc(100dvh - 1rem);
   }
-
   .example-submission-actions {
-    align-items: stretch;
     flex-direction: column-reverse;
+    align-items: stretch;
   }
 }

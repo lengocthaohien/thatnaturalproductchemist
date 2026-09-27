@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Search | That Natural Product Chemist"
+  description="Search the titles, summaries, tags, and full text of every article, opinion, exercise, and example published on That Natural Product Chemist."
+>
+  <section class="listing-shell">
+    <header class="listing-header">
+      <p class="eyebrow">Search / Find content</p>
+      <h1>Search the publication.</h1>
+      <p>Search across the titles, summaries, tags, and full text of every published article, opinion, exercise, and example.</p>
+    </header>
+
+    <form class="search-panel" id="search-form" action="/search/" method="get" role="search">
+      <label for="search-input">Search terms</label>
+      <div class="search-panel-controls">
+        <input
+          id="search-input"
+          type="search"
+          name="q"
+          autocomplete="off"
+          placeholder="e.g. piperazic acid, HSQC, dereplication"
+        />
+        <button type="submit">Search</button>
+      </div>
+    </form>
+
+    <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+    <div class="article-list search-results" id="search-results" hidden></div>
+    <noscript>
+      <p class="search-status">
+        Search runs in your browser against an index built with the site, so it needs
+        JavaScript. You can still browse <a href="/articles/">Articles</a>,
+        <a href="/opinions/">Opinions</a>, <a href="/exercises/">Exercises</a>, and
+        <a href="/examples/">Examples</a> directly.
+      </p>
+    </noscript>
+  </section>
+
+  <script>
+    interface SearchEntry {
+      title: string;
+      summary: string;
+      label: string;
+      path: string;
+      tags: string[];
+      year: string;
+      body: string;
+    }
+
+    const formElement = document.querySelector<HTMLFormElement>('#search-form');
+    const inputElement = document.querySelector<HTMLInputElement>('#search-input');
+    const statusElement = document.querySelector<HTMLParagraphElement>('#search-status');
+    const resultsElement = document.querySelector<HTMLDivElement>('#search-results');
+
+    if (!formElement || !inputElement || !statusElement || !resultsElement) {
+      throw new Error('Search page markup is incomplete.');
+    }
+
+    const form = formElement;
+    const input = inputElement;
+    const status = statusElement;
+    const results = resultsElement;
+
+    let index: SearchEntry[] | null = null;
+
+    async function loadIndex(): Promise<SearchEntry[]> {
+      if (!index) {
+        const response = await fetch('/search-index.json');
+        if (!response.ok) {
+          throw new Error(`Failed to load the search index (${response.status}).`);
+        }
+        index = (await response.json()) as SearchEntry[];
+      }
+      return index;
+    }
+
+    /* Every term must match somewhere (AND semantics). Title matches weigh the
+       most, then tags, the section label, the summary, and body occurrences. */
+    function scoreEntry(entry: SearchEntry, terms: string[]): number {
+      const title = entry.title.toLowerCase();
+      const tags = entry.tags.join(' ').toLowerCase();
+      const label = entry.label.toLowerCase();
+      const summary = entry.summary.toLowerCase();
+      const body = entry.body.toLowerCase();
+      let total = 0;
+      for (const term of terms) {
+        let termScore = 0;
+        if (title.includes(term)) termScore += 10;
+        if (tags.includes(term)) termScore += 6;
+        if (label.includes(term)) termScore += 3;
+        if (summary.includes(term)) termScore += 3;
+        termScore += Math.min(body.split(term).length - 1, 5);
+        if (termScore === 0) return 0;
+        total += termScore;
+      }
+      return total;
+    }
+
+    function renderResults(matches: SearchEntry[]) {
+      results.replaceChildren();
+      matches.forEach((entry, position) => {
+        const article = document.createElement('article');
+        const number = document.createElement('span');
+        number.textContent = String(position + 1).padStart(2, '0');
+        const copy = document.createElement('div');
+        const kicker = document.createElement('p');
+        kicker.textContent = entry.label;
+        const heading = document.createElement('h2');
+        const link = document.createElement('a');
+        link.href = entry.path;
+        link.textContent = entry.title;
+        heading.append(link);
+        const summary = document.createElement('p');
+        summary.textContent = entry.summary;
+        copy.append(kicker, heading, summary);
+        const year = document.createElement('time');
+        year.textContent = entry.year;
+        article.append(number, copy, year);
+        results.append(article);
+      });
+      results.hidden = matches.length === 0;
+    }
+
+    async function runSearch(rawQuery: string, { updateUrl = true }: { updateUrl?: boolean } = {}) {
+      const query = rawQuery.trim();
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        if (query) {
+          url.searchParams.set('q', query);
+        } else {
+          url.searchParams.delete('q');
+        }
+        window.history.replaceState(null, '', url);
+      }
+      if (!query) {
+        results.replaceChildren();
+        results.hidden = true;
+        status.textContent = 'Enter one or more terms to search across every published entry.';
+        return;
+      }
+      status.textContent = 'Searching…';
+      try {
+        const entries = await loadIndex();
+        const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+        const matches = entries
+          .map((entry) => ({ entry, score: scoreEntry(entry, terms) }))
+          .filter(({ score }) => score > 0)
+          .sort((left, right) => right.score - left.score)
+          .map(({ entry }) => entry);
+        renderResults(matches);
+        status.textContent =
+          matches.length === 0
+            ? `No entries match “${query}”. Try a compound name, a technique, or a keyword.`
+            : `${matches.length} ${matches.length === 1 ? 'result' : 'results'} for “${query}”.`;
+      } catch (error) {
+        results.replaceChildren();
+        results.hidden = true;
+        status.textContent =
+          error instanceof Error ? error.message : 'The search index could not be loaded.';
+      }
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      void runSearch(input.value);
+    });
+
+    const initialQuery = new URLSearchParams(window.location.search).get('q') ?? '';
+    input.value = initialQuery;
+    if (initialQuery) {
+      void runSearch(initialQuery, { updateUrl: false });
+    } else {
+      status.textContent = 'Enter one or more terms to search across every published entry.';
+    }
+  </script>
+</BaseLayout>

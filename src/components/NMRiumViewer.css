@@ -1,5 +1,7 @@
+/* Aligned with the widened entry column (--entry-measure from global.css) so
+   the viewer's top rule lines up with the article header, body, and footer. */
 .nmrium-section {
-  width: min(100% - 2rem, 88rem);
+  width: min(100%, var(--entry-measure));
   margin: 0 auto 5rem;
   border-top: 1px solid var(--ink);
 }
