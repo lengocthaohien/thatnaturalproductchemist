@@ -1,44 +1,58 @@
 ---
 /*
- * "Follow new publications" panel rendered at the bottom of the About and
- * Contribute pages. The site is fully static and uses GitHub alone:
- *
- * 1. Email notifications: readers watch the repository for releases
- *    (Watch → Custom → Releases). The post-releases workflow
- *    (.github/workflows/post-releases.yml) creates one GitHub Release per
- *    newly published entry, and GitHub emails every watcher. Unsubscribing
- *    is built in: readers unwatch the repository.
- * 2. RSS: readers subscribe to /rss.xml in any feed reader, no account
- *    required. Removing the feed unsubscribes them.
+ * Minimal email subscription for a static site. Submissions are relayed by
+ * Web3Forms (https://web3forms.com), a free form-to-email service with no
+ * account: enter the receiving address on their homepage to get an access
+ * key and paste it below. Each submission arrives as an email to that
+ * address; the site owner keeps the list and notifies subscribers manually
+ * when a new post is published. Unsubscribe requests arrive as ordinary
+ * replies. Without JavaScript the form still submits and Web3Forms shows
+ * its own confirmation page.
  */
-const repositoryUrl = 'https://github.com/lengocthaohien/thatnaturalproductchemist';
+const accessKey = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
 ---
 
 <section class="subscribe-panel" aria-labelledby="subscribe-heading">
-  <p class="eyebrow">Subscribe / New publications</p>
-  <h2 id="subscribe-heading">Follow new publications.</h2>
-  <p>
-    Two ways to be notified when a new Article, Opinion, Exercise, or Example
-    is published. Both are easy to leave at any time.
-  </p>
-  <div class="subscribe-options">
-    <section>
-      <h3>Email via GitHub</h3>
-      <p>
-        With a free GitHub account, open the repository and choose
-        <strong>Watch → Custom → Releases</strong>. GitHub emails you when a new
-        publication is released. To unsubscribe, choose <strong>Unwatch</strong>
-        on the repository page.
-      </p>
-      <a href={repositoryUrl} rel="external">Watch releases on GitHub</a>
-    </section>
-    <section>
-      <h3>RSS feed</h3>
-      <p>
-        Subscribe to the feed in any RSS reader; no account or email address
-        required. Remove the feed from your reader to unsubscribe.
-      </p>
-      <a href="/rss.xml">Open the RSS feed</a>
-    </section>
-  </div>
+  <p class="eyebrow">Subscribe</p>
+  <h2 id="subscribe-heading">New posts by email.</h2>
+  <form class="subscribe-form" data-subscribe-form action="https://api.web3forms.com/submit" method="post">
+    <input type="hidden" name="access_key" value={accessKey} />
+    <input type="hidden" name="subject" value="New subscriber - That Natural Product Chemist" />
+    <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <label class="visually-hidden" for="subscribe-email">Email address</label>
+    <input id="subscribe-email" name="email" type="email" placeholder="you@lab.edu" autocomplete="email" required />
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="subscribe-note" data-subscribe-status>To unsubscribe, reply to any update email.</p>
 </section>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>('form[data-subscribe-form]')) {
+    const status = form.closest('.subscribe-panel')?.querySelector<HTMLElement>('[data-subscribe-status]');
+    if (!status) continue;
+    const defaultNote = status.textContent ?? '';
+
+    form.addEventListener('input', () => {
+      status.textContent = defaultNote;
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      status.textContent = 'Subscribing…';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        status.textContent = 'Thank you — you are on the list.';
+        form.reset();
+      } catch {
+        status.textContent = 'Subscription failed. Please try again later.';
+      }
+    });
+  }
+</script>
