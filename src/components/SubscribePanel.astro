@@ -1,0 +1,44 @@
+---
+/*
+ * "Follow new publications" panel rendered at the bottom of the About and
+ * Contribute pages. The site is fully static and uses GitHub alone:
+ *
+ * 1. Email notifications: readers watch the repository for releases
+ *    (Watch → Custom → Releases). The post-releases workflow
+ *    (.github/workflows/post-releases.yml) creates one GitHub Release per
+ *    newly published entry, and GitHub emails every watcher. Unsubscribing
+ *    is built in: readers unwatch the repository.
+ * 2. RSS: readers subscribe to /rss.xml in any feed reader, no account
+ *    required. Removing the feed unsubscribes them.
+ */
+const repositoryUrl = 'https://github.com/lengocthaohien/thatnaturalproductchemist';
+---
+
+<section class="subscribe-panel" aria-labelledby="subscribe-heading">
+  <p class="eyebrow">Subscribe / New publications</p>
+  <h2 id="subscribe-heading">Follow new publications.</h2>
+  <p>
+    Two ways to be notified when a new Article, Opinion, Exercise, or Example
+    is published. Both are easy to leave at any time.
+  </p>
+  <div class="subscribe-options">
+    <section>
+      <h3>Email via GitHub</h3>
+      <p>
+        With a free GitHub account, open the repository and choose
+        <strong>Watch → Custom → Releases</strong>. GitHub emails you when a new
+        publication is released. To unsubscribe, choose <strong>Unwatch</strong>
+        on the repository page.
+      </p>
+      <a href={repositoryUrl} rel="external">Watch releases on GitHub</a>
+    </section>
+    <section>
+      <h3>RSS feed</h3>
+      <p>
+        Subscribe to the feed in any RSS reader; no account or email address
+        required. Remove the feed from your reader to unsubscribe.
+      </p>
+      <a href="/rss.xml">Open the RSS feed</a>
+    </section>
+  </div>
+</section>

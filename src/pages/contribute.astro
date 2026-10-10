@@ -1,6 +1,7 @@
 ---
 import ExampleSubmissionDialog from '../components/ExampleSubmissionDialog.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SubscribePanel from '../components/SubscribePanel.astro';
 
 const repositoryUrl = 'https://github.com/lengocthaohien/thatnaturalproductchemist';
 ---
@@ -42,6 +43,7 @@ const repositoryUrl = 'https://github.com/lengocthaohien/thatnaturalproductchemi
           <a href={`${repositoryUrl}/blob/main/CONTRIBUTING.md`}>Read the contribution guide</a>
         </section>
       </div>
+      <SubscribePanel />
     </div>
   </section>
 </BaseLayout>

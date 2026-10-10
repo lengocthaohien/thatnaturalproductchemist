@@ -1062,6 +1062,43 @@ h1 {
   font-size: 0.78rem;
 }
 
+/* Subscribe panel: GitHub watch and RSS options at the foot of text pages. */
+.subscribe-panel {
+  border-top: 1px solid var(--ink);
+  margin-top: 4rem;
+  padding-top: 3rem;
+}
+
+.subscribe-options {
+  gap: 2rem;
+  margin-top: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: grid;
+}
+
+.subscribe-options section {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+}
+
+.subscribe-options h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.subscribe-options p {
+  font-size: 1rem;
+}
+
+.subscribe-options a {
+  text-transform: uppercase;
+  text-underline-offset: 0.3rem;
+  text-decoration-thickness: 1px;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+}
+
 @media (max-width: 760px) {
   .site-header {
     align-items: flex-start;
@@ -1087,6 +1124,9 @@ h1 {
   .search-panel-controls {
     flex-direction: column;
     align-items: stretch;
+  }
+  .subscribe-options {
+    grid-template-columns: 1fr;
   }
   .hero {
     min-height: auto;
