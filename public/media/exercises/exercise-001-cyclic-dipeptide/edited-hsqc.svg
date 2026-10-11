@@ -7,7 +7,7 @@
       <path d="M0 0L10 5L0 10z" fill="#7A6A5F"/>
     </marker>
   </defs>
-  <rect width="100%" height="100%" fill="#E7DCC0"/>
+  <rect width="100%" height="100%" fill="#F4F1EA"/>
   <text class="label" x="110" y="42">TNPC EXERCISE 001 · EXPERIMENT 34</text>
      <text class="title" x="110" y="76">Edited ¹H–¹³C HSQC · DMSO-d₆</text>
      <rect class="plot" x="110" y="110" width="1220" height="690"/>

@@ -2,7 +2,7 @@
   <title id="t">Stacked 1H NMR comparison of two commercial ampicillin products in DMSO-d6</title>
   <desc id="d">Two stacked proton NMR spectra on a shared 0 to 10 ppm axis. The lower trace (Product B, ampicillin sodium) is clean: methyl singlets at 1.46 and 1.57 ppm, methine signals at 3.9 and 4.5 ppm, a beta-lactam proton at 5.4 ppm, and a phenyl multiplet at 7.3 to 7.4 ppm. The upper trace (Product A, ampicillin) shows the same core resonances plus additional peaks at 1.0 to 1.2, 5.0, and 5.8 ppm, aromatic shoulders extending to 7.6 ppm, and extra weak signals at 8.8 to 9.2 ppm, indicating lower purity. The tall resonance at 2.50 ppm in both traces is residual DMSO solvent; the chemical-shift scale is referenced to residual DMSO-d6 at 2.50 ppm per the Cambridge Isotope Laboratories NMR Solvent Data Chart.</desc>
   <style>
-    .frame{fill:#FDFCF9}
+    .frame{fill:#F4F1EA}
     .axis{stroke:#3D2036;stroke-width:1;fill:none}
     .tick{stroke:#3D2036;stroke-width:1}
     .lbl{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:16px;fill:#3D2036;text-anchor:middle}

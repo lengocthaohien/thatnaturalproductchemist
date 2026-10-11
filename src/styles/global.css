@@ -522,6 +522,42 @@ h1 {
   display: block;
 }
 
+/* NMR and data tables follow one systematic alignment design: headers are
+   centred, purely numeric cells are centred, and cells containing text —
+   including text mixed with numbers — are left-aligned. The Sätteri plugin in
+   src/lib/table-alignment-plugin.mjs strips Markdown's per-column alignment
+   and tags every td as .cell-number or .cell-text at build time, so the rule
+   holds for every table without per-table markup. */
+.article-body table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.article-body th,
+.article-body td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.55rem 0.9rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.article-body th {
+  border-bottom: 1px solid var(--ink);
+  font-weight: 600;
+  text-align: center;
+}
+
+.article-body td.cell-number {
+  text-align: center;
+}
+
+.article-body td.cell-text {
+  text-align: left;
+}
+
 .article-footer {
   margin-inline: auto;
   border-top: 1px solid var(--ink);

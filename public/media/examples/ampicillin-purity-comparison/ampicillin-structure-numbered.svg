@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="t d">
+  <title id="t">Ampicillin structure with numbered positions for NMR assignment</title>
+  <desc id="d">Skeletal structure of ampicillin drawn as the free acid. The fused thiazolidine and beta-lactam rings carry standard penam position numbers: C-2 bears the gem-dimethyl group (two methyl singlets near 1.5 ppm), H-3 is the thiazolidine methine near 3.9 ppm, and H-5 and H-6 are the beta-lactam methines near 5.4 ppm. The side chain at C-6 carries primed numbers: C-1' is the amide carbonyl, H-2' the side-chain methine near 4.5 ppm, and the phenyl ring positions 3' to 8' give the 5-proton aromatic multiplet at 7.3 to 7.4 ppm. Exchangeable NH and NH2 protons appear weakly above 8.5 ppm.</desc>
+  <style>
+    .frame{fill:#FDFCF9}
+    .bond{stroke:#3D2036;stroke-width:3;stroke-linecap:round;fill:none}
+    .wedge{fill:#3D2036}
+    .het{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:19px;fill:#5E3A52;text-anchor:middle}
+    .het-l{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:19px;fill:#5E3A52;text-anchor:start}
+    .het-r{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:19px;fill:#5E3A52;text-anchor:end}
+    .num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;font-weight:700;fill:#8C6D1F;text-anchor:middle}
+    .num-s{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;font-weight:700;fill:#8C6D1F;text-anchor:middle}
+    .sub{font-size:12px}
+  </style>
+  <rect class="frame" width="920" height="560"/>
+
+  <!-- phenyl ring (positions 3' to 8') -->
+  <polygon class="bond" points="120,162 127.9,221.5 80.3,258.1 24.8,235.2 17,175.7 64.5,139.1"/>
+  <circle class="bond" cx="72.4" cy="198.6" r="36" stroke-width="2.5"/>
+  <text class="num-s" x="110" y="173">3′</text>
+  <text class="num-s" x="66" y="155">4′</text>
+  <text class="num-s" x="28" y="184">5′</text>
+  <text class="num-s" x="34" y="232">6′</text>
+  <text class="num-s" x="79" y="250">7′</text>
+  <text class="num-s" x="117" y="221">8′</text>
+
+  <!-- side chain: NH-CO-CH(NH2)-Ph -->
+  <polygon class="wedge" points="450,130 356.6,102.2 353.4,117.8"/>
+  <text class="het-r" x="346" y="118">NH</text>
+  <line class="bond" x1="318" y1="113" x2="283" y2="131"/>
+  <line class="bond" x1="270.5" y1="150" x2="270.5" y2="212"/>
+  <line class="bond" x1="279.5" y1="150" x2="279.5" y2="212"/>
+  <text class="het" x="275" y="236">O</text>
+  <text class="num" x="300" y="156">1′</text>
+  <line class="bond" x1="267" y1="137" x2="193" y2="116"/>
+  <line class="bond" x1="185" y1="104" x2="185" y2="56"/>
+  <text class="het" x="185" y="46">NH<tspan class="sub" dy="4">2</tspan></text>
+  <text class="num" x="204" y="144">2′</text>
+  <line class="bond" x1="177" y1="116" x2="123" y2="159"/>
+
+  <!-- beta-lactam ring -->
+  <line class="bond" x1="555.5" y1="122" x2="555.5" y2="60"/>
+  <line class="bond" x1="564.5" y1="122" x2="564.5" y2="60"/>
+  <text class="het" x="560" y="50">O</text>
+  <line class="bond" x1="560" y1="130" x2="450" y2="130"/>
+  <line class="bond" x1="450" y1="130" x2="450" y2="230"/>
+  <line class="bond" x1="450" y1="230" x2="546" y2="230"/>
+  <line class="bond" x1="560" y1="218" x2="560" y2="130"/>
+  <text class="het" x="560" y="238">N</text>
+  <text class="num" x="433" y="158">6</text>
+  <text class="num" x="428" y="255">5</text>
+
+  <!-- thiazolidine ring -->
+  <line class="bond" x1="570" y1="240" x2="655" y2="292"/>
+  <line class="bond" x1="660" y1="295" x2="605" y2="415"/>
+  <line class="bond" x1="605" y1="415" x2="492" y2="424"/>
+  <line class="bond" x1="468" y1="413" x2="452" y2="242"/>
+  <text class="het" x="478" y="433">S</text>
+  <text class="num" x="684" y="280">3</text>
+  <text class="num" x="632" y="402">2</text>
+
+  <!-- C-2 gem-dimethyl -->
+  <line class="bond" x1="605" y1="415" x2="560" y2="484"/>
+  <text class="het" x="552" y="506">CH<tspan class="sub" dy="4">3</tspan></text>
+  <line class="bond" x1="605" y1="415" x2="678" y2="459"/>
+  <text class="het" x="700" y="478">CH<tspan class="sub" dy="4">3</tspan></text>
+
+  <!-- C-3 carboxylic acid -->
+  <line class="bond" x1="666" y1="298" x2="760" y2="327"/>
+  <line class="bond" x1="764.4" y1="328.3" x2="796.4" y2="260.3"/>
+  <line class="bond" x1="771.6" y1="331.7" x2="803.6" y2="263.7"/>
+  <text class="het" x="800" y="248">O</text>
+  <line class="bond" x1="768" y1="330" x2="834" y2="355"/>
+  <text class="het-l" x="842" y="363">OH</text>
+</svg>

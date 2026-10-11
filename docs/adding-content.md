@@ -130,6 +130,7 @@ Body text. Keep observations separate from interpretation, and name uncertaintie
 - Main body text is rendered **justified** (like scientific papers) with automatic hyphenation. Write normal flowing paragraphs; never insert manual line breaks, double spaces, or blank lines to influence alignment.
 - Headings, figure captions, and metadata (kicker, author line, footer notes) are intentionally left-aligned — leave them as plain Markdown.
 - Use `##` for sections and `*emphasis*` on the line directly after a figure for its caption.
+- Tables in every section (articles, opinions, exercises, examples) follow one systematic alignment: **headers are centred, cells containing only a number are centred, and cells containing text (including text mixed with numbers, such as `1.46 and 1.57 ppm`) are left-aligned**. Write plain Markdown tables without column alignment markers (`---:`, `:--:`) — the build-time plugin in `src/lib/table-alignment-plugin.mjs` runs on every entry's Markdown and classifies each cell automatically, and markers are stripped anyway.
 
 ## 5. The draft / review gate
 

@@ -83,6 +83,7 @@ These rules apply to every NMR figure and dataset published on the site:
 - **Calibration.** Reference every NMR spectrum to the residual solvent values in the Cambridge Isotope Laboratories NMR Solvent Data Chart (`nmrsolventschart_001.pdf`, repository root) — for DMSO-d₆, δH 2.50 ppm and δC 39.51 ppm. Do not use rounded or outdated conventions (e.g. 2.4 ppm for DMSO), and state the referencing in the figure caption.
 - **Note placement.** Place every note or label that sits on a spectrum in the top-left corner of its plotting area; never float labels in the middle of a spectrum. Provenance footnotes belong below the axis, outside the plotting area.
 - **Solvent annotation.** Mark the residual solvent peak directly: put the solvent note on top of or beside the solvent peak and draw an arrow pointing to the peak whenever the format allows it.
+- **Background color.** Every NMR figure — whether it appears in an article, opinion, exercise, or example — uses the shared background from `scripts/nmr-figure-style.mjs` (`SPECTRUM_BACKGROUND`, currently `#F4F1EA`, the site's `--paper-deep` token). The light background keeps traces and contour signals clearly visible. Figure scripts must import this constant rather than hard-coding a color, and hand-authored spectrum SVGs must use the same value, so every spectrum on the site stays consistent. The only exception is the decorative hero spectrum on the homepage, which is not a data figure.
 
 ## Reproducing Exercise 001 previews
 

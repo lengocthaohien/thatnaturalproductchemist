@@ -3,6 +3,7 @@ import { resolve, join } from 'node:path';
 import { contours } from 'd3-contour';
 import { FileCollection } from 'file-collection';
 import initializeNMRiumCore from '@zakodium/nmrium-core-plugins';
+import { SPECTRUM_BACKGROUND } from './nmr-figure-style.mjs';
 
 const archivePath = resolve(
   process.argv[2] ?? 'staging/exercise-001/exercise-001-browser.zip',
@@ -200,7 +201,7 @@ function svgDocument(width, height, contents) {
       <path d="M0 0L10 5L0 10z" fill="#7A6A5F"/>
     </marker>
   </defs>
-  <rect width="100%" height="100%" fill="#E7DCC0"/>
+  <rect width="100%" height="100%" fill="${SPECTRUM_BACKGROUND}"/>
   ${contents}
 </svg>\n`;
 }
