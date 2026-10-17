@@ -1,6 +1,10 @@
 # Agent guidelines
 
-Standing rules for this repository. Also read [CONTRIBUTING.md](CONTRIBUTING.md), [ideology.md](ideology.md), and [docs/media-authoring.md](docs/media-authoring.md) before editing content or figures.
+Standing rules for this repository. Also read [CONTRIBUTING.md](CONTRIBUTING.md), [ideology.md](ideology.md), [docs/media-authoring.md](docs/media-authoring.md), and [docs/publication-rules.md](docs/publication-rules.md) before editing content or figures.
+
+## General publication rules
+
+- [docs/publication-rules.md](docs/publication-rules.md) is the single ruleset for every new publication in all four sections (articles, opinions, exercises, examples) and must be applied whenever a new publication is planned or added. In short: **declare the target length first** (short ≈ 500, medium ≈ 1000, or long ≈ 1500 words — ask for it if not given); write in the concise voice of an experienced natural product chemist for a quick read; draw all chemical structures through the shared RDKit pipeline and site palette (`#3D2036` bonds, `#5E3A52` heteroatoms, `#8C6D1F` position numbers, light red `(0.96, 0.84, 0.79)` highlight, transparent SVG background) with position numbers synced to the assignment tables; and follow the general and NMR table rules summarized below.
 
 ## Articles section
 

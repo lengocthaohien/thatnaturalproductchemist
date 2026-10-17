@@ -29,7 +29,7 @@ license: CC BY-NC 4.0
 draft: false
 ---
 
-Most natural product discovery begins with a crude extract and ends, many purification steps later, with a structure. Shin and co-workers invert that order in their 2023 *JACS* paper on piperazic acid (Piz)-bearing metabolites: before isolating anything, they decide **which strains are worth culturing** and **which cultures are worth fractionating** by pairing two independent signatures — one genomic, one spectroscopic. The pairing itself is the methodological contribution — and why this perspective opens the Articles section.
+Most natural product discovery begins with a crude extract and ends, many purification steps later, with a structure. Shin and co-workers invert that order in their 2023 *JACS* paper on piperazic acid (Piz)-bearing metabolites: before isolating anything, they decide which strains are worth culturing and which cultures are worth fractionating, by pairing two independent signatures — one genomic, one spectroscopic. That pairing is the methodological contribution — and why this perspective opens the Articles section.
 
 ![Chemical structures of piperazic acid and seven piperazic acid-bearing nonribosomal peptides — kutzneride 1, lydiamycin A, piperazimycin A, azinothricin, depsidomycin, dentigerumycin E, and incarnatapeptin A — with every six-membered N–N ring tinted red: the piperazic acid residues, the dehydropiperazic acid ring of lydiamycin A, and the hydroxylated and chlorinated piperazic acid derivatives of piperazimycin A.](/media/articles/piperazic-acid-genomic-spectroscopic-signatures/piperazic-acid-natural-products-structures.svg)
 
@@ -37,13 +37,13 @@ Most natural product discovery begins with a crude extract and ends, many purifi
 
 ## The paper at a glance
 
-Piperazic acid is a cyclic hydrazine amino acid from a small but potent family of bacterial peptides, biosynthesized from L-ornithine by the N-hydroxylase KtzI and the heme-dependent N–N bond-forming enzyme KtzT. The authors use the two genes as a genomic signature of Piz biosynthetic potential, and the motif's unusual nitrogens as a spectroscopic signature of actual production. PCR screening of 2020 strains against *ktzT* gave 62 hits in 23 phylogenetic clades; ¹⁵N labeling with ¹H–¹⁵N 2D NMR then confirmed which cultures genuinely produced Piz-bearing metabolites. The prioritized strains delivered a new azinothricin congener (polyoxyperuin B seco acid), depsidomycin D with two dehydropiperazic acid units, and the lenziamides A and B — novel 31-membered cyclic decapeptides; lenziamide A resensitized 5-fluorouracil-resistant colorectal tumors in vitro and in vivo.
+Piperazic acid is a cyclic hydrazine amino acid from a small but potent family of bacterial peptides, biosynthesized from L-ornithine by the N-hydroxylase KtzI and the N–N bond-forming enzyme KtzT. The authors use the two genes as a genomic signature of Piz biosynthetic potential, and the motif's unusual nitrogens as a spectroscopic signature of actual production. PCR screening of 2020 strains against *ktzT* gave 62 hits in 23 phylogenetic clades; ¹⁵N labeling with ¹H–¹⁵N 2D NMR then confirmed which cultures genuinely produced Piz-bearing metabolites. The prioritized strains delivered a new azinothricin congener, depsidomycin D with two dehydropiperazic acid units, and the lenziamides A and B — novel 31-membered cyclic decapeptides; lenziamide A resensitized 5-fluorouracil-resistant colorectal tumors in vitro and in vivo.
 
 ## The genomic signature: a short amplicon as a structural oracle
 
-The first problem the paper solves is screening strains **without whole-genome sequences**. Degenerate PCR primers against conserved *ktzI* and *ktzT* regions, aligned from 16 known Piz-bearing biosynthetic gene clusters, amplify ~700 bp and ~370 bp fragments. The *ktzT* primers had to be engineered against false hits from PaiB-family transcriptional regulators, which resemble KtzT but play no role in Piz biosynthesis: a targeted primer is only as targeted as its design controls.
+The first problem the paper solves is screening strains without whole-genome sequences. Degenerate primers against conserved *ktzI* and *ktzT* regions amplify ~700 bp and ~370 bp fragments; the *ktzT* primers had to be engineered against false hits from PaiB-family regulators, which resemble KtzT but play no role in Piz biosynthesis. A targeted primer is only as targeted as its design controls.
 
-The deeper move is what the amplicons are used for. Rather than reading a PCR band as a binary yes, the authors sequence the ~370 bp *ktzT* fragments, translate them, and build a phylogeny of 62 hits plus 22 references. Because the reference strains produce known compounds, the tree becomes an **atlas**: reference-occupied clades predict a structural family; empty clades flag novelty. Group I (69 of 84 strains) maps onto azinothricin-type frameworks; the smaller, structurally more diverse group II is where the lenziamides emerged.
+The deeper move is what the amplicons are used for. Rather than reading a PCR band as a binary yes, the authors sequence the *ktzT* fragments and build a phylogeny of 62 hits plus 22 reference strains. Because the references produce known compounds, the tree becomes an atlas: reference-occupied clades predict a structural family, and empty clades flag novelty. Group I (69 of 84 strains) maps onto azinothricin-type frameworks; the smaller, structurally more diverse group II is where the lenziamides emerged.
 
 Two observations bound the claim honestly:
 
@@ -54,9 +54,9 @@ Two observations bound the claim honestly:
 
 A genomic hit says a strain *can* make a Piz-bearing compound, not that it *does*. The second signature answers that question directly in culture extracts, before purification.
 
-The prior art is ¹H–¹⁵N HSQC-TOCSY on ¹⁵N-labeled cultures, used by Ryan and Andersen to discover the incarnatapeptins: the –N–NH– unit of Piz carries a proton-attached nitrogen whose correlations light up the Piz spin system. Shin and co-workers identify its blind spot. Piz is frequently modified — roughly twenty derivatives are known — and oxidation by enzymes such as the cytochrome P450 Luz26 converts –N–NH– into the –N=N– of dehydropiperazic acid (Dpz), which has **no NH proton** and is invisible to HSQC-TOCSY.
+The prior art is ¹H–¹⁵N HSQC-TOCSY on ¹⁵N-labeled cultures, which lights up the proton-attached –N–NH– unit of Piz. Shin and co-workers identify its blind spot. Piz is frequently modified, and oxidation converts –N–NH– into the –N=N– of dehydropiperazic acid (Dpz), which has no NH proton and is invisible to HSQC-TOCSY.
 
-Their fix is a nitrogen chemical-shift signature read by ¹H–¹⁵N HMBC, which needs only a proton within long-range coupling distance. Because ¹⁵N shifts were barely reported for Piz and never for Dpz, reference data came first: feeding the lydiamycin A producer *Streptomyces* sp. GG23 with ¹⁵N₂-L-ornithine resolved four diagnostic nitrogens — δN 79.5 (NH) and 140.6 (amide N) for Piz; δN 173.1 (amide N) and 318.6 (=N–) for Dpz. The imine-like nitrogen at δN 313–318 is exactly what HSQC-TOCSY cannot see, and it is what later flagged depsidomycin D, carrying two Dpz units, in strain BYK1239. Hit strains were cultured with ¹⁵NH₄Cl and screened by ¹H–¹⁵N HMBC.
+Their fix is a nitrogen chemical-shift signature read by ¹H–¹⁵N HMBC, which needs only a proton within long-range coupling distance. Because ¹⁵N shifts were barely reported for Piz and never for Dpz, reference data came first: feeding a lydiamycin producer ¹⁵N₂-L-ornithine resolved four diagnostic nitrogens — δN 79.5 (NH) and 140.6 (amide N) for Piz; δN 173.1 (amide N) and 318.6 (=N–) for Dpz. The imine-like nitrogen near δN 318 is exactly what HSQC-TOCSY cannot see, and it is what later flagged depsidomycin D, carrying two Dpz units. Hit strains were cultured with ¹⁵NH₄Cl and screened by ¹H–¹⁵N HMBC.
 
 
 ## How the pairing works as a pipeline
@@ -65,26 +65,24 @@ Read as a workflow, the paper is a sequence of gates, each removing a different 
 
 1. **PCR screen** (2020 → 62 strains): does the strain carry *ktzT*? *ktzI* primers cross-validate against artifacts.
 2. **Amplicon phylogeny** (62 strains → clades): which structural family is likely? Reference-occupied clades flag dereplication risk; empty clades flag novelty.
-3. **LC/MS with UV and in-house dereplication** (62 → 12 peptide-producers → 5 prioritized strains): is anything peptide-like produced, and is it known? Seven strains fell here to dereplication alone.
-4. **¹⁵N labeling + ¹H–¹⁵N 2D NMR**: is the metabolite genuinely Piz- or Dpz-bearing? This gate makes downstream isolation "logical" rather than hopeful.
+3. **LC/MS with in-house dereplication** (62 → 12 peptide-producers → 5 prioritized strains): is anything peptide-like produced, and is it known? Seven strains fell here to dereplication alone.
+4. **¹⁵N labeling + ¹H–¹⁵N 2D NMR**: is the metabolite genuinely Piz- or Dpz-bearing? This gate makes downstream isolation logical rather than hopeful.
 5. **Targeted isolation and structure elucidation**, followed by antiSMASH cluster analysis and, where needed, advanced Marfey's and J-based configuration analysis.
 
-The discoveries track the gates: a new azinothricin congener where group I predicted one; chloptosin, correctly dereplicated as known; depsidomycin D, found **because** the Dpz nitrogen signature revealed an oxidized derivative in a supposedly Piz-only family; and the lenziamides from an uncharacterized group II clade, where the atlas predicted novelty.
+The discoveries track the gates: a new azinothricin congener where the atlas predicted one; chloptosin, correctly dereplicated as known; depsidomycin D, found *because* the Dpz nitrogen signature revealed an oxidized derivative in a supposedly Piz-only family; and the lenziamides from an uncharacterized group II clade, where the atlas predicted novelty.
 
 ## Why the pairing matters more than either half
 
-Neither signature suffices alone. The genomic signature is cheap and scales to thousands of strains, but it detects only *potential* — silent clusters, primer mismatches, and non-producing cultures all pass. The spectroscopic signature detects *production* — the molecule, in the flask, now — but it is expensive per strain and silent on novelty. Run genomics first and spectroscopy second, and each filter removes the other's costliest failures: NMR time only on strains already predicted interesting, isolation effort only on cultures confirmed to produce the motif. The same logic underpinned this group's earlier macrolactam work — a strategy, not a one-off.
+Neither signature suffices alone. The genomic signature is cheap and scales to thousands of strains, but it detects only *potential* — silent clusters and primer mismatches pass. The spectroscopic signature detects *production* — the molecule, in the flask, now — but it is expensive per strain and silent on novelty. Run genomics first and spectroscopy second, and each filter removes the other's costliest failures: NMR time only on strains already predicted interesting, isolation effort only on cultures confirmed to produce the motif.
 
 ## Limitations and open questions
 
 A close reading should hold onto what the method cannot do:
 
-- **Primer bias.** Degenerate primers amplify conserved homologues; genuinely divergent *ktzT* genes are missed. The hit set was 98% *Streptomyces* — library, primer bias, or biology cannot be fully separated.
-- **The atlas is statistical, not causal.** Nineteen of 23 clades map to structures; clades 17 and 18 remain unassigned, and within-clade variation means phylogeny prioritizes rather than determines.
-- **Labeling cost and sensitivity.** ¹⁵N feeding plus HMBC on crude extracts demands isotope budget and NMR sensitivity; low-titre producers may fall below the HMBC detection gate despite a genuine genomic signature.
+- **Primer bias.** Degenerate primers amplify conserved homologues; genuinely divergent *ktzT* genes are missed. The hit set was 98% *Streptomyces* — library, primer bias, and biology cannot be fully separated.
+- **The atlas is statistical, not causal.** Nineteen of 23 clades map to structures, and within-clade variation means phylogeny prioritizes rather than determines.
+- **Labeling cost and sensitivity.** ¹⁵N feeding plus HMBC on crude extracts demands isotope budget and NMR sensitivity; low-titre producers may fall below the detection gate despite a genuine genomic signature.
 - **Signature scope.** The δN fingerprint is established for Piz and Dpz; other Piz-derived motifs need their own reference shifts before the same confidence applies.
-
-None of these caveats diminishes the central demonstration: a cheap genomic readout and a motif-specific spectroscopic readout, used in sequence, turned a 2020-strain library into five strains and five structures with minimal blind fractionation.
 
 ## What to take from it
 

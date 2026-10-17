@@ -1,6 +1,6 @@
 # Adding new content
 
-That Natural Product Chemist stores every publication as a Markdown file in a single Astro **content collection** called `entries`. This page explains how to add a new one. It complements [../CONTRIBUTING.md](../CONTRIBUTING.md) (scope and review) and [media-authoring.md](media-authoring.md) (figures and PDFs).
+That Natural Product Chemist stores every publication as a Markdown file in a single Astro **content collection** called `entries`. This page explains how to add a new one. It complements [../CONTRIBUTING.md](../CONTRIBUTING.md) (scope and review), [publication-rules.md](publication-rules.md) (length, voice, structure figures, and tables — read first when planning a new publication), and [media-authoring.md](media-authoring.md) (figures and PDFs).
 
 ## 1. Where content lives
 
