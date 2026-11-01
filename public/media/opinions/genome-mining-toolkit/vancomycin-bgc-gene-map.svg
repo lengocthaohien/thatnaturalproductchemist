@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 292">
+<title>Gene map of the vancomycin biosynthetic gene cluster (MIBiG BGC0000455.6)</title>
+<text x="60.0" y="22" font-family="Newsreader, Georgia, serif" font-size="13" font-style="italic" fill="#3D2036">Amycolatopsis orientalis HCCB10007 — vancomycin biosynthetic gene cluster</text>
+<text x="960.0" y="22" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#5E3A52" text-anchor="end">MIBiG BGC0000455.6 · NCBI HQ679900.1 · 65,044 nt</text>
+<rect x="166.9" y="104" width="381.3" height="72" rx="8" fill="rgba(245, 214, 202, 0.6)"/>
+<line x1="60.0" y1="140.0" x2="960.0" y2="140.0" stroke="#3D2036" stroke-width="1" opacity="0.3"/>
+<text x="357.6" y="60" font-family="Newsreader, Georgia, serif" font-size="12" font-style="italic" fill="#3D2036" text-anchor="middle">NRPS assembly line — vcm2, vcm3, vcm4</text><line x1="166.9" y1="68" x2="548.3" y2="68" stroke="#3D2036" stroke-width="1"/><line x1="166.9" y1="68" x2="166.9" y2="72" stroke="#3D2036" stroke-width="1"/><line x1="548.3" y1="68" x2="548.3" y2="72" stroke="#3D2036" stroke-width="1"/>
+<text x="960.0" y="60" font-family="Newsreader, Georgia, serif" font-size="12" font-style="italic" fill="#3D2036" text-anchor="end">precursor supply: Hpg · Dpg · vancosamine</text><line x1="780.9" y1="68" x2="942.7" y2="68" stroke="#3D2036" stroke-width="1"/><line x1="780.9" y1="68" x2="780.9" y2="72" stroke="#3D2036" stroke-width="1"/><line x1="942.7" y1="68" x2="942.7" y2="72" stroke="#3D2036" stroke-width="1"/>
+<text x="60.0" y="84" font-family="Newsreader, Georgia, serif" font-size="12" font-style="italic" fill="#3D2036" text-anchor="start">vanHAX resistance</text><line x1="60.0" y1="92" x2="97.0" y2="92" stroke="#3D2036" stroke-width="1"/><line x1="60.0" y1="92" x2="60.0" y2="96" stroke="#3D2036" stroke-width="1"/><line x1="97.0" y1="92" x2="97.0" y2="96" stroke="#3D2036" stroke-width="1"/>
+<text x="617.5" y="84" font-family="Newsreader, Georgia, serif" font-size="12" font-style="italic" fill="#3D2036" text-anchor="middle">tailoring: P450s · halogenase · glycosyltransferases</text><line x1="552.4" y1="92" x2="682.6" y2="92" stroke="#3D2036" stroke-width="1"/><line x1="552.4" y1="92" x2="552.4" y2="96" stroke="#3D2036" stroke-width="1"/><line x1="682.6" y1="92" x2="682.6" y2="96" stroke="#3D2036" stroke-width="1"/>
+<polygon points="60.0,127.0 70.0,127.0 74.3,140.0 70.0,153.0 60.0,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="74.3,127.0 84.4,127.0 88.8,140.0 84.4,153.0 74.3,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="88.6,127.0 93.0,127.0 97.0,140.0 93.0,153.0 88.6,153.0" fill="#FDFCF9" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="110.7,127.0 120.1,127.0 124.2,140.0 120.1,153.0 110.7,153.0" fill="#FDFCF9" stroke="#8C6D1F" stroke-width="1.2"/>
+<polygon points="126.2,127.0 134.0,127.0 138.0,140.0 134.0,153.0 126.2,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="137.4,127.0 158.1,127.0 167.0,140.0 158.1,153.0 137.4,153.0" fill="#8C6D1F" stroke="none"/>
+<polygon points="166.9,127.0 287.8,127.0 297.8,140.0 287.8,153.0 166.9,153.0" fill="#3D2036" stroke="none"/>
+<text x="232.4" y="121" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" text-anchor="middle">3 modules</text>
+<polygon points="302.7,127.0 460.8,127.0 470.8,140.0 460.8,153.0 302.7,153.0" fill="#3D2036" stroke="none"/>
+<text x="386.8" y="121" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" text-anchor="middle">3 modules</text>
+<polygon points="471.1,127.0 538.3,127.0 548.3,140.0 538.3,153.0 471.1,153.0" fill="#3D2036" stroke="none"/>
+<text x="509.7" y="121" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" text-anchor="middle">1 module</text>
+<polygon points="552.4,127.0 563.7,127.0 568.6,140.0 563.7,153.0 552.4,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="573.2,127.0 585.0,127.0 590.1,140.0 585.0,153.0 573.2,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="591.9,127.0 603.7,127.0 608.8,140.0 603.7,153.0 591.9,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="609.4,127.0 623.7,127.0 629.8,140.0 623.7,153.0 609.4,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="630.6,127.0 642.4,127.0 647.5,140.0 642.4,153.0 630.6,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="648.3,127.0 660.1,127.0 665.2,140.0 660.1,153.0 648.3,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="665.6,127.0 677.5,127.0 682.6,140.0 677.5,153.0 665.6,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="682.6,127.0 690.0,127.0 694.0,140.0 690.0,153.0 682.6,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="694.6,127.0 702.2,127.0 706.2,140.0 702.2,153.0 694.6,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="724.0,127.0 711.4,127.0 705.9,140.0 711.4,153.0 724.0,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="727.2,127.0 734.7,127.0 738.7,140.0 734.7,153.0 727.2,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="739.4,127.0 755.7,127.0 762.6,140.0 755.7,153.0 739.4,153.0" fill="#3D2036" stroke="none"/>
+<polygon points="762.8,127.0 774.4,127.0 779.3,140.0 774.4,153.0 762.8,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="780.9,127.0 791.0,127.0 795.3,140.0 791.0,153.0 780.9,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="795.2,127.0 805.7,127.0 810.1,140.0 805.7,153.0 795.2,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="813.1,127.0 824.6,127.0 829.6,140.0 824.6,153.0 813.1,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="832.1,127.0 845.7,127.0 851.5,140.0 845.7,153.0 832.1,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="851.5,127.0 860.9,127.0 865.0,140.0 860.9,153.0 851.5,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="864.9,127.0 875.7,127.0 880.3,140.0 875.7,153.0 864.9,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="880.6,127.0 885.1,127.0 889.1,140.0 885.1,153.0 880.6,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="890.4,127.0 901.2,127.0 905.8,140.0 901.2,153.0 890.4,153.0" fill="#3D2036" stroke="none"/>
+<polygon points="906.2,127.0 910.9,127.0 914.9,140.0 910.9,153.0 906.2,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="914.9,127.0 926.7,127.0 931.8,140.0 926.7,153.0 914.9,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<polygon points="931.8,127.0 938.7,127.0 942.7,140.0 938.7,153.0 931.8,153.0" fill="#5E3A52" stroke="none"/>
+<polygon points="945.1,127.0 955.5,127.0 960.0,140.0 955.5,153.0 945.1,153.0" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<line x1="67.1" y1="156.0" x2="67.1" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="67.1" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 67.1 184)">vanH</text>
+<line x1="81.5" y1="156.0" x2="81.5" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="81.5" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 81.5 198)">vanA</text>
+<line x1="92.8" y1="156.0" x2="92.8" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="92.8" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 92.8 184)">vanX</text>
+<line x1="117.4" y1="156.0" x2="117.4" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="117.4" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 117.4 198)">vtrR</text>
+<line x1="132.1" y1="156.0" x2="132.1" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="132.1" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 132.1 184)">vcm1</text>
+<line x1="232.4" y1="156.0" x2="232.4" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="232.4" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 232.4 198)">vcm2</text>
+<line x1="386.8" y1="156.0" x2="386.8" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="386.8" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 386.8 184)">vcm3</text>
+<line x1="509.7" y1="156.0" x2="509.7" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="509.7" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 509.7 198)">vcm4</text>
+<line x1="560.5" y1="156.0" x2="560.5" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="560.5" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 560.5 184)">vcm5</text>
+<line x1="581.7" y1="156.0" x2="581.7" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="581.7" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 581.7 198)">vcm6</text>
+<line x1="600.3" y1="156.0" x2="600.3" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="600.3" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 600.3 184)">vcm7</text>
+<line x1="619.6" y1="156.0" x2="619.6" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="619.6" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 619.6 198)">vcm8</text>
+<line x1="639.1" y1="156.0" x2="639.1" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="639.1" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 639.1 184)">vcm9</text>
+<line x1="656.7" y1="156.0" x2="656.7" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="656.7" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 656.7 198)">vcm10</text>
+<line x1="674.1" y1="156.0" x2="674.1" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="674.1" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 674.1 184)">vcm11</text>
+<line x1="700.4" y1="156.0" x2="700.4" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="700.4" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 700.4 198)">vcm12</text>
+<line x1="715.0" y1="156.0" x2="715.0" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="715.0" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 715.0 184)">vcm13</text>
+<line x1="732.9" y1="156.0" x2="732.9" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="732.9" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 732.9 198)">vcm14</text>
+<line x1="751.0" y1="156.0" x2="751.0" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="751.0" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 751.0 184)">vcm15</text>
+<line x1="771.1" y1="156.0" x2="771.1" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="771.1" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 771.1 198)">vcm16</text>
+<line x1="788.1" y1="156.0" x2="788.1" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="788.1" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 788.1 184)">vcm17</text>
+<line x1="802.7" y1="156.0" x2="802.7" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="802.7" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 802.7 198)">vcm18</text>
+<line x1="841.8" y1="156.0" x2="841.8" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="841.8" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 841.8 184)">vcm19</text>
+<line x1="858.2" y1="156.0" x2="858.2" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="858.2" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 858.2 198)">vcm20</text>
+<line x1="872.6" y1="156.0" x2="872.6" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="872.6" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 872.6 184)">vcm21</text>
+<line x1="884.9" y1="156.0" x2="884.9" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="884.9" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 884.9 198)">vcm22</text>
+<line x1="898.1" y1="156.0" x2="898.1" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="898.1" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 898.1 184)">vcm23</text>
+<line x1="910.6" y1="156.0" x2="910.6" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="910.6" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 910.6 198)">vcm24</text>
+<line x1="923.3" y1="156.0" x2="923.3" y2="180" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="923.3" y="184" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 923.3 184)">vcm25</text>
+<line x1="937.3" y1="156.0" x2="937.3" y2="194" stroke="#3D2036" stroke-width="0.6" opacity="0.35"/><text x="937.3" y="198" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" transform="rotate(70 937.3 198)">vcm26</text>
+<rect x="60.0" y="263.5" width="14" height="9" fill="#3D2036" stroke="none"/>
+<text x="79.0" y="271.5" font-family="Newsreader, Georgia, serif" font-size="10" fill="#3D2036">core biosynthetic</text>
+<rect x="183.4" y="263.5" width="14" height="9" fill="#5E3A52" stroke="none"/>
+<text x="202.4" y="271.5" font-family="Newsreader, Georgia, serif" font-size="10" fill="#3D2036">tailoring &amp; precursor supply</text>
+<rect x="364.0" y="263.5" width="14" height="9" fill="#8C6D1F" stroke="none"/>
+<text x="383.0" y="271.5" font-family="Newsreader, Georgia, serif" font-size="10" fill="#3D2036">transport</text>
+<rect x="445.8" y="263.5" width="14" height="9" fill="#FDFCF9" stroke="#8C6D1F" stroke-width="1.2"/>
+<text x="464.8" y="271.5" font-family="Newsreader, Georgia, serif" font-size="10" fill="#3D2036">regulatory</text>
+<rect x="532.8" y="263.5" width="14" height="9" fill="#FDFCF9" stroke="#3D2036" stroke-width="1.2"/>
+<text x="551.8" y="271.5" font-family="Newsreader, Georgia, serif" font-size="10" fill="#3D2036">resistance</text>
+<rect x="619.8" y="263.5" width="14" height="9" fill="#F4F1EA" stroke="#3D2036" stroke-width="1.2"/>
+<text x="638.8" y="271.5" font-family="Newsreader, Georgia, serif" font-size="10" fill="#3D2036">other / uncharacterized</text>
+<line x1="821.6" y1="268" x2="960.0" y2="268" stroke="#3D2036" stroke-width="1.5"/><line x1="821.6" y1="264" x2="821.6" y2="272" stroke="#3D2036" stroke-width="1.5"/><line x1="960.0" y1="264" x2="960.0" y2="272" stroke="#3D2036" stroke-width="1.5"/><text x="890.8" y="261" font-family="'DM Mono', ui-monospace, monospace" font-size="9.5" fill="#3D2036" text-anchor="middle">10 kb</text>
+</svg>
