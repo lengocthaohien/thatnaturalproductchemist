@@ -9,7 +9,9 @@ vancomycin (CID 14969, free acid/base form, not the hydrochloride salt);
 no stereochemical claims beyond that record. The seven residues of the
 heptapeptide are located by walking the backbone from the N-terminal
 N-methylleucine (residue 1) to the C-terminal carboxylate (residue 7),
-and each monomer-derived moiety is highlighted with the light red tint.
+and each monomer-derived moiety is highlighted with its own tint from the
+site residue-tint palette (one color per residue, numbers as the redundant
+second encoding).
 The gold residue numbers 1-7 are the labels used in the article's Table 1
 (antiSMASH adenylation-domain predictions vs. observed residues); if the
 table changes, regenerate this figure. Sugars, chlorines, the N-methyl
@@ -41,7 +43,23 @@ SMILES = (
 BOND = "#3D2036"
 HETERO = "#5E3A52"
 NUM = "#8C6D1F"
-TINT = (0.96, 0.84, 0.79)
+
+# Residue-tint palette (docs/publication-rules.md section 3): one pastel tint
+# per residue, in heptapeptide order 1-7. Residue numbers, not color alone,
+# carry the identity of each monomer.
+RESIDUE_TINTS = [
+    "#F5D6CA",  # 1 light red
+    "#EFE0B8",  # 2 pale gold
+    "#E7DCEC",  # 3 lavender
+    "#DCE6D4",  # 4 pale sage
+    "#D2E4E3",  # 5 pale teal
+    "#DADFEE",  # 6 pale slate
+    "#EBD3DC",  # 7 pale mauve
+]
+
+
+def rgb(hex_color):
+    return tuple(int(hex_color[i : i + 2], 16) / 255 for i in (1, 3, 5))
 
 mol = Chem.MolFromSmiles(SMILES)
 assert mol is not None
@@ -173,18 +191,27 @@ opts = drawer.drawOptions()
 opts.padding = 0.06
 opts.bondLineWidth = 2.0
 
-hl_atoms = sorted({a for _, _, m in residues for a in m})
-hl_set = set(hl_atoms)
-hl_bonds = sorted(
-    b.GetIdx() for b in mol.GetBonds()
-    if b.GetBeginAtomIdx() in hl_set and b.GetEndAtomIdx() in hl_set
-)
+# One tint per residue; shared atoms (e.g. cross-link ether oxygens) keep the
+# color of the first residue that claims them, and bonds between residues stay
+# unhighlighted so cross-links read as connections between monomers.
+atom_colors, bond_colors = {}, {}
+claimed = set()
+for i, (_, _, moiety) in enumerate(residues):
+    tint = rgb(RESIDUE_TINTS[i])
+    for a in sorted(moiety - claimed):
+        atom_colors[a] = tint
+    claimed |= moiety
+    own = {a for a in moiety if atom_colors.get(a) == tint}
+    for b in mol.GetBonds():
+        if b.GetBeginAtomIdx() in own and b.GetEndAtomIdx() in own:
+            bond_colors[b.GetIdx()] = tint
+
 drawer.DrawMolecule(
     mol,
-    highlightAtoms=hl_atoms,
-    highlightBonds=hl_bonds,
-    highlightAtomColors={a: TINT for a in hl_atoms},
-    highlightBondColors={b: TINT for b in hl_bonds},
+    highlightAtoms=sorted(atom_colors),
+    highlightBonds=sorted(bond_colors),
+    highlightAtomColors=atom_colors,
+    highlightBondColors=bond_colors,
 )
 drawer.FinishDrawing()
 
@@ -194,16 +221,36 @@ centroid = (
     sum(p.y for p in coords.values()) / len(coords),
 )
 
-labels = []
+# Residue numbers sit OUTSIDE the drawing: for each residue, try 16 directions
+# from its moiety centroid and keep the closest position that clears every
+# atom (no glyph on bonds or inside rings) and every previously placed label.
+atom_pts = [(p.x, p.y) for p in coords.values()]
+labels, placed = [], []
 for i, (ai, ci, moiety) in enumerate(residues, start=1):
     print(f"residue {i}: {classify(moiety)} ({len(moiety)} atoms)")
     ring = [j for j in moiety if mol.GetAtomWithIdx(j).GetIsAromatic()]
     anchor = ring if ring else [j for j in moiety if j not in (ai, ci)]
     px = sum(coords[j].x for j in anchor) / len(anchor)
     py = sum(coords[j].y for j in anchor) / len(anchor)
-    dx, dy = px - centroid[0], py - centroid[1]
-    d = math.hypot(dx, dy) or 1.0
-    labels.append((px + dx / d * 26, py + dy / d * 26 + 5, str(i)))
+    outward = math.atan2(py - centroid[1], px - centroid[0])
+    best = None
+    for k in range(16):
+        ang = outward + k * math.pi / 8
+        ux, uy = math.cos(ang), math.sin(ang)
+        for t in range(28, 300, 4):
+            lx, ly = px + ux * t, py + uy * t
+            if any(math.hypot(lx - ax, ly - ay) < 30 for ax, ay in atom_pts):
+                continue
+            if any(math.hypot(lx - qx, ly - qy) < 34 for qx, qy in placed):
+                continue
+            score = t + (0 if k == 0 else 60)  # prefer outward when similar
+            if best is None or score < best[0]:
+                best = (score, lx, ly)
+            break
+    assert best is not None, f"no clear label position for residue {i}"
+    _, lx, ly = best
+    placed.append((lx, ly))
+    labels.append((lx, ly + 6, str(i)))
 
 # ---- restyle the RDKit SVG into the site palette --------------------------
 svg = drawer.GetDrawingText()
@@ -218,12 +265,12 @@ body = body.replace("fill:#000000", f"fill:{BOND}")  # wedge bonds
 # highlight fills (light red tint) are deliberately left untouched
 body = body.replace("stroke-linecap:butt", "stroke-linecap:round")
 
-# ---- compose the outer canvas ---------------------------------------------
+# ---- compose the outer canvas (labels included in the bounding box) --------
 PAD = 30
-minx = min(p.x for p in coords.values()) - PAD
-maxx = max(p.x for p in coords.values()) + PAD
-miny = min(p.y for p in coords.values()) - PAD
-maxy = max(p.y for p in coords.values()) + PAD
+all_x = [p.x for p in coords.values()] + [lx for lx, _, _ in labels]
+all_y = [p.y for p in coords.values()] + [ly for _, ly, _ in labels]
+minx, maxx = min(all_x) - PAD, max(all_x) + PAD
+miny, maxy = min(all_y) - PAD, max(all_y) + PAD
 iw, ih = maxx - minx, maxy - miny
 
 OUT_W = 1000
@@ -239,7 +286,7 @@ label_els = "\n".join(
 
 out = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {OUT_W} {OUT_H}" role="img" aria-labelledby="t d">
   <title id="t">Vancomycin structure with the seven heptapeptide residues numbered</title>
-  <desc id="d">Skeletal structure of vancomycin (PubChem CID 14969) drawn with stereochemistry from that record. The light red tint marks the seven monomer-derived moieties specified by the antiSMASH adenylation-domain predictions: N-methylleucine (1), two chloro-beta-hydroxytyrosines (2 and 6), asparagine (3), two 4-hydroxyphenylglycines (4 and 5), and 3,5-dihydroxyphenylglycine (7). The glucose-vancosamine disaccharide on residue 4, the two chlorines, the N-methyl group, and the three oxidative cross-links are tailoring features outside the monomer predictions.</desc>
+  <desc id="d">Skeletal structure of vancomycin (PubChem CID 14969) drawn with stereochemistry from that record. Each of the seven monomer-derived moieties specified by the antiSMASH adenylation-domain predictions carries its own pastel tint and a gold residue number placed outside the drawing: N-methylleucine (1), two chloro-beta-hydroxytyrosines (2 and 6), asparagine (3), two 4-hydroxyphenylglycines (4 and 5), and 3,5-dihydroxyphenylglycine (7). The glucose-vancosamine disaccharide on residue 4, the two chlorines, the N-methyl group, and the three oxidative cross-links are tailoring features outside the monomer predictions.</desc>
   <style>
     .num {{ font-family:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
            font-weight:700; fill:{NUM}; text-anchor:middle }}

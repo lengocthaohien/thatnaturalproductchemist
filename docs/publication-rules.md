@@ -60,6 +60,27 @@ Use the site palette exactly as in the current scripts; do not invent new colors
 - Every structure figure needs descriptive **alt text** (what is drawn, including numbering and stereochemistry) and a nearby **caption** stating what form is drawn (free acid vs. salt, tautomer), what the numbering is, and what to inspect — per [media-authoring.md](media-authoring.md) §3.
 - For **exercises**, structure figures must never leak the answer before the solution stage — no compound names, structures, formulas, or database identifiers in filenames, metadata, or early figures (see [../CONTRIBUTING.md](../CONTRIBUTING.md)).
 
+### Multi-residue structures (peptides, glycopeptides, depsipeptides)
+
+When several residues or monomers carry the story — for example mapping antiSMASH adenylation-domain predictions onto a product, or comparing monomer compositions across analogues — use **one tint per residue** from the residue-tint palette below instead of the single light red highlight. The worked example is the vancomycin figure in `public/media/opinions/genome-mining-toolkit/generate-vancomycin-structure.py`.
+
+| Assignment order | Tint name | Hex |
+| --- | --- | --- |
+| Residue 1 | light red | `#F5D6CA` |
+| Residue 2 | pale gold | `#EFE0B8` |
+| Residue 3 | lavender | `#E7DCEC` |
+| Residue 4 | pale sage | `#DCE6D4` |
+| Residue 5 | pale teal | `#D2E4E3` |
+| Residue 6 | pale slate | `#DADFEE` |
+| Residue 7 | pale mauve | `#EBD3DC` |
+
+- **One color per residue**, assigned in monomer order, and kept consistent across every panel of the figure and any accompanying scheme. Extend the palette only in the same low-saturation register; the bonds and heteroatom colors do not change.
+- **Numbers, not color, carry the identity.** Every tinted residue keeps its gold position number (bold DM Mono), and the assignment table refers to those numbers — color is a redundant second encoding, never the only one (see [../ideology.md](../ideology.md)).
+- **Numbers sit outside the drawing.** Residue numbers must never overlap bonds, heteroatom glyphs, or ring interiors. Generator scripts place labels with explicit atom-collision clearance — the vancomycin script searches 16 directions from each residue centroid and keeps the closest position that clears all atoms and previously placed labels; the outer canvas bounding box must include the labels.
+- **Number in biosynthetic order** (N→C for NRPS and RiPP products), and keep figure, table, and caption in sync.
+- **Tailoring stays untinted.** Sugars, halogens, N-methyl groups, and cross-links that are not part of the monomer story are drawn without a tint, and bonds between residues stay unhighlighted so cross-links read as connections between monomers.
+- The caption states the numbering scheme and what the tints mean, as for any structure figure.
+
 
 ## 4. Tables, including NMR tables
 
