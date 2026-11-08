@@ -27,16 +27,18 @@ references:
     url: https://doi.org/10.1038/nbt.3597
   - citation: "Nothias L.-F., Petras D., Schmid R., et al. Feature-based molecular networking in the GNPS analysis environment. Nat. Methods 2020, 17, 905–908"
     url: https://doi.org/10.1038/s41592-020-0933-6
+  - citation: "Zhang M., Otsuki K., Li W. Molecular networking as a natural products discovery strategy. Acta Mater. Med. 2023, 2(2)"
+    url: https://doi.org/10.15212/AMM-2023-0007
+  - citation: "Yu J. S., Kwak Y. B., Kee K. H., et al. A versatile toolkit for drug metabolism studies with GNPS2: from drug development to clinical monitoring. Nat. Protoc. 2026, 21, 1265–1299; published online 2025"
+    url: https://doi.org/10.1038/s41596-025-01237-6
+  - citation: "de Souza Mazucato V., Rodrigues W. D., Tonani L., von Zeska Kress M. R., Vieira P. C. GNPS2 molecular networking reveals metabolic diversity in fungi isolated from protease-rich fruits. Nat. Prod. Bioprospect. 2026, 16, 50"
+    url: https://doi.org/10.1007/s13659-026-00615-1
   - citation: "Olivon F., Elie N., Grelier G., Roussi F., Litaudon M., Touboul D. MetGem software for the generation of molecular networks based on the t-SNE algorithm. Anal. Chem. 2018, 90, 13900–13908"
     url: https://doi.org/10.1021/acs.analchem.8b03099
   - citation: "Giacomoni F., Le Corguillé G., Monsoor M., et al. Workflow4Metabolomics: a collaborative research infrastructure for computational metabolomics. Bioinformatics 2015, 31, 1493–1495"
     url: https://doi.org/10.1093/bioinformatics/btu813
   - citation: "Guitton Y., Tremblay-Franco M., Le Corguillé G., et al. Create, run, share, publish, and reference your LC–MS, FIA–MS, GC–MS, and NMR data analysis workflows with the Workflow4Metabolomics 3.0 Galaxy online infrastructure for metabolomics. Int. J. Biochem. Cell Biol. 2017, 93, 89–101"
     url: https://doi.org/10.1016/j.biocel.2017.07.002
-  - citation: "Schmid R., Heuckeroth S., Korf A., et al. Integrative analysis of multimodal mass spectrometry data in MZmine 3. Nat. Biotechnol. 2023, 41, 447–449"
-    url: https://doi.org/10.1038/s41587-023-01690-2
-  - citation: "Tsugawa H., Cajka T., Kind T., et al. MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat. Methods 2015, 12, 523–526"
-    url: https://doi.org/10.1038/nmeth.3393
   - citation: "Schymanski E. L., Jeon J., Gulde R., et al. Identifying small molecules via high resolution mass spectrometry: communicating confidence. Environ. Sci. Technol. 2014, 48, 2097–2098"
     url: https://doi.org/10.1021/es5002105
   - citation: "GNPS2 Documentation. Feature-Based Molecular Networking"
@@ -51,9 +53,15 @@ Molecular networking changed untargeted natural product research by giving LC–
 
 A molecular network begins with MS/MS spectra. In classical molecular networking, each node represents a spectrum or consolidated precursor; in feature-based molecular networking (FBMN), nodes represent LC–MS features after detection and alignment. An edge connects two nodes when their fragmentation spectra pass chosen similarity and matched-peak thresholds.
 
+![Conceptual molecular networking diagram. Two fragmentation spectra with shared and precursor-shifted ions are compared by modified cosine similarity and connected in a candidate molecular family. Classical networking uses precursor-consolidated MS/MS spectra as nodes. Feature-based networking uses LC–MS features with precursor mass, retention time, and abundances across three samples, and is labeled as the current mainstream approach for comparative LC–MS/MS.](/media/opinions/molecular-networking-metabolomics-toolkit/molecular-networking-concept.svg)
+
+*Figure 1. What a molecular network represents, and what changes between classical and feature-based molecular networking. In both approaches, edges represent spectral similarity under user-defined scoring and matched-peak settings, not proof of a shared scaffold. Classical networking consolidates spectra by precursor and does not retain chromatographic feature context. FBMN links MS/MS spectra to detected and aligned features, retaining precursor m/z, retention time (RT), and sample abundances. FBMN is the current mainstream choice for comparative LC–MS/MS natural product studies; classical networking remains useful for rapid spectral surveys. All spectra and networks are schematic; no experimental intensity or similarity value is implied.*
+
 The modified cosine score is the key device. It rewards shared fragment ions and neutral losses, but also allows fragment peaks to shift by the precursor mass difference. Two related molecules can therefore connect when a substitution changes their precursor masses while preserving part of their fragmentation behavior. This is an inference about spectral relatedness, not a structure assignment.
 
 That distinction matters. Related compounds may separate when ionization or collision conditions change their spectra. Unrelated compounds may connect through common fragments, noise, or chimeric spectra. Adducts, isotopes, in-source fragments, and co-isolated precursors further complicate the graph. Cosine thresholds control which relationships become visible; they do not convert those relationships into facts.
+
+For new comparative LC–MS/MS studies, **FBMN is now the mainstream workflow and my default choice**. The spectral-similarity principle remains the same, but the feature layer restores the chromatographic and quantitative context needed for sample comparisons. This statement concerns LC–MS/MS; classical networking still has a place when that feature context is unavailable or unnecessary.
 
 ## Why this leverages natural product discovery
 
@@ -69,9 +77,11 @@ These tools reflect their research communities. GNPS emerged from a UC San Diego
 
 ## GNPS: the reference ecosystem
 
-GNPS made molecular networking broadly accessible and, more importantly, attached it to spectral libraries, public datasets, and community curation. Its enduring contribution is social as much as computational: results can be revisited, public data reanalyzed, and annotations discussed against inspectable spectra.
+GNPS made molecular networking broadly accessible and, more importantly, attached it to spectral libraries, public datasets, and community curation. GNPS2 continues that model with faster processing, an improved interface, and a broader set of integrated analysis workflows. Its enduring contribution is social as much as computational: results can be revisited, public data reanalyzed, and annotations discussed against inspectable spectra.
 
-Classical networking remains useful for a rapid spectral overview. For comparative LC–MS studies, I prefer FBMN. It retains feature intensity and retention-time information, supports sample-level mappings, and can incorporate adduct relationships through ion-identity approaches. MZmine, MS-DIAL, XCMS, and other processors can supply the feature table and MS/MS summary required by GNPS2.
+Classical networking remains useful for a rapid spectral overview. For comparative LC–MS studies, I prefer FBMN. It retains feature intensity and retention-time information, supports sample-level mappings, and can incorporate adduct relationships through ion-identity approaches. Feature-processing software supplies the quantification table and MS/MS spectral summary required by GNPS2.
+
+Recent literature shows the platform’s range. A 2025/2026 *Nature Protocols* paper documents five GNPS2 workflows for drug-metabolism studies, while a 2026 fungal study uses GNPS2 networking to compare culture substrates and co-cultivation conditions. These examples demonstrate current usage and versatility; they do not remove the need to validate individual annotations.
 
 GNPS still depends on upstream decisions. Poor chromatographic alignment or aggressive blank filtering cannot be repaired by an attractive network. Library coverage is uneven, spectral matches need inspection, and propagated annotations must be labeled as hypotheses. I would report software versions, preprocessing parameters, cosine and matched-peak thresholds, library versions, and annotation confidence alongside every figure.
 
@@ -96,11 +106,10 @@ W4M is not an automatic substitute for GNPS or MetGem. Its learning curve includ
 | GNPS / GNPS2 | Networking, libraries, public-data reuse | Spectral ecosystem and FBMN integration | Upstream quality and library coverage constrain results |
 | MetGem | Local network and t-SNE exploration | Interactive, standalone visualization | Embeddings are exploratory, not structural evidence |
 | Workflow4Metabolomics | Preprocessing, statistics, annotation | Shareable Galaxy workflows across several omics | Setup and parameter choices still demand expertise |
-| MZmine or MS-DIAL | Feature detection, alignment, deconvolution | Detailed local control before networking | Processing errors propagate into every downstream map |
 
 ## My working sequence
 
-For a natural product project, I would acquire LC–MS/MS with pooled controls and blanks, inspect chromatograms before any networking, and process features in MZmine, MS-DIAL, or W4M according to the study design. I would use FBMN on GNPS when abundance and sample comparisons matter, then inspect uncertain families and settings locally in MetGem when another view helps.
+For a natural product project, I would acquire LC–MS/MS with pooled controls and blanks, inspect chromatograms before any networking, and use a validated feature-processing workflow suited to the study design. I would use FBMN on GNPS2 when abundance and sample comparisons matter, then inspect uncertain families and settings locally in MetGem when another view helps.
 
 The final step is deliberately conservative: separate library matches, propagated family hypotheses, formula predictions, and confirmed structures in the report. Use the network to choose the next experiment, not to avoid it. That is where these tools have their greatest value—and where their authority ends.
 
