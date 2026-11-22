@@ -38,7 +38,7 @@ references:
   - citation: Piedl K., Agee C. O., Tarulli A. G., Campbell R., Banks P., Buchbinder N. W., Williamson R. T., Mevers E. Ecological prevalence and non-enzymatic formation of imidazolium alkaloids on moon snail egg collars. Molecules 2026, 31, 159
     url: https://doi.org/10.3390/molecules31010159
 license: CC BY-NC 4.0
-draft: true
+draft: false
 ---
 
 A quaternary imidazole is not simply an imidazole with a positive charge. Here, the term means a **1,3-disubstituted imidazolium ring**: both ring nitrogens carry carbon substituents, so no N–H proton can be lost to regenerate a neutral imidazole. The positive charge is built into an aromatic natural product. Once regarded as a maca-specific oddity, this moiety now appears in both plant and bacterial natural products.
